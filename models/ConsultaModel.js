@@ -8,7 +8,7 @@ class ConsultaModel {
     this._contato_alguem_corona = contato_alguem_corona;
     this._viagem_internacional = viagem_internacional;
     this._outros_sintomas = outros_sintomas;
-    this._gravidez = gravidez
+    this._gravidez = gravidez;
     this._id_usuario = id_usuario;
   }
   
@@ -22,23 +22,23 @@ class ConsultaModel {
     return this._melhorou_apos_medicamento;
   }
   get contato_alguem_corona(){
-      return this._contato_alguem_corona;
+    return this._contato_alguem_corona;
   }
   get viagem_internacional(){
-      return this._viagem_internacional
+    return this._viagem_internacional;
   }
   get outros_sintomas(){
-      return this._outros_sintomas
+    return this._outros_sintomas;
   }
   get gravidez(){
-      return this._gravidez
+    return this._gravidez;
   }
   get id_usuario(){
-      return this._id_usuario;
+    return this._id_usuario;
   }
-
+  
   set teve_febre(value){
-    this._teve_febre = value
+    this._teve_febre = value;
   }
   set tomou_medicamento(value) {
     this._tomou_medicamento = value;
@@ -49,19 +49,19 @@ class ConsultaModel {
   set contato_alguem_corona(value){
     this._contato_alguem_corona = value;
   }
-
+  
   set viagem_internacional(value){
-    this._viagem_internacional = value
-}
-    set outros_sintomas(value){
-    this._outros_sintomas = value
-}
-    set gravidez(value){
-    this._gravidez = value
-}
-
+    this._viagem_internacional = value;
+  }
+  set outros_sintomas(value){
+    this._outros_sintomas = value;
+  }
+  set gravidez(value){
+    this._gravidez = value;
+  }
+  
   set id_usuario(value){
-      this._id_usuario = value;
+    this._id_usuario = value;
   }
   
   salvarConsulta(consulta) {
@@ -69,26 +69,42 @@ class ConsultaModel {
       conect.query(`INSERT INTO consultas(
         teve_febre, tomou_medicamento, melhorou_apos_medicamento,
         contato_alguem_corona, viagem_internacional, outros_sintomas, gravidez, id_usuario
-      ) VALUES(?,?,?,?,?,?,?,?)`, [consulta._teve_febre, 
-        consulta._tomou_medicamento, 
-        consulta._melhorou_apos_medicamento, 
-        consulta._contato_alguem_corona,
-        consulta._viagem_internacional,
-        consulta._outros_sintomas,
-        consulta._gravidez, 
-        consulta._id_usuario], (err, result) => {
-        if (err) {
-          reject(err.message);
-        } else {
-          resolve(result);
-        }
-      });
-    });   
-  }
-}
-
-module.exports =  ConsultaModel;
-
-
-
-
+        ) VALUES(?,?,?,?,?,?,?,?)`, [consulta._teve_febre, 
+          consulta._tomou_medicamento, 
+          consulta._melhorou_apos_medicamento, 
+          consulta._contato_alguem_corona,
+          consulta._viagem_internacional,
+          consulta._outros_sintomas,
+          consulta._gravidez, 
+          consulta._id_usuario], (err, result) => {
+            if (err) {
+              reject(err.message);
+            } else {
+              resolve(result);
+            }
+          });
+        });   
+      }
+      
+      listarConsultaDoUsuario(usuario) {
+        return new Promise((resolve, reject) => {
+          conect.query(`SELECT c.teve_febre, c.tomou_medicamento, c.melhorou_apos_medicamento,
+          c.contato_alguem_corona, c.viagem_internacional, c.outros_sintomas, c.gravidez
+          sintomas.descricao AS sintomas FROM consutlas AS c, consulta_para_sintomas AS cs, sintomas
+          WHERE c.id_usuario = ? AND cs.id_consulta = c.id AND cs.id_sintoma = sintomas.id`, [usuario._id,], (err, result) => {
+              if (err) {
+                reject(err.message);
+              } else {
+                resolve(result);
+             }
+          });
+        });
+      }      
+    }
+    
+    module.exports =  ConsultaModel;
+    
+    
+    
+    
+    
