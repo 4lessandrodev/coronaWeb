@@ -99,7 +99,7 @@ class ConsultaModel {
         return new Promise((resolve, reject) => {
           conect.query(`SELECT c.teve_febre, c.tomou_medicamento, c.melhorou_apos_medicamento,
           c.contato_alguem_corona, c.viagem_internacional, c.outros_sintomas, c.gravidez,
-          sin.descricao FROM consutlas AS c, consulta_para_sintomas AS cs, sintomas AS sin
+          sin.descricao FROM consultas AS c, consulta_para_sintomas AS cs, sintomas AS sin
           WHERE c.id_usuario = ? AND cs.id_consulta = c.id AND cs.id_sintoma = sin.id`, [usuario._id,], (err, result) => {
             if (err) {
               reject(err.message);

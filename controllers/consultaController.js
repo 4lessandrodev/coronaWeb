@@ -39,7 +39,11 @@ const listarConsultas = (req, res, next) => {
   const consulta = new Consulta();
   const usuario = new Usuario();
   usuario.id = req.body.id;
-  consulta.listarConsultaDoUsuario(usuario);
+  consulta.listarConsultaDoUsuario(usuario).then(resposta => {
+    res.send(resposta)
+  })
+
+  
 };
 
 
