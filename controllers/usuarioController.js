@@ -15,8 +15,9 @@ const cadastradoDePerfil = (req, res, next, id_usuario) => {
   perfil.salvarPerfil(perfil).then(resposta => {
     res.send(`usuario cadastrado`)
   })
+} 
 
-  } 
+
 
 
 
