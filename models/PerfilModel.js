@@ -2,6 +2,7 @@ const conect = require('../config/BD_CONECT');
 
 class PerfilModel {
   constructor (nome, email, idade, genero, id_usuario) {
+    this.id = null;
     this._nome = nome;
     this._email = email;
     this._idade = idade;
@@ -9,6 +10,9 @@ class PerfilModel {
     this._id_usuario = id_usuario;
   }
   
+  get id(){
+    return this._id
+  }
   get nome() {
     return this._nome;
   }
@@ -23,6 +27,10 @@ class PerfilModel {
   }
   get id_usuario(){
       return this._id_usuario;
+  }
+
+  set id(value){
+    this.id = value
   }
   set nome(value){
     this._nome = value
