@@ -2,6 +2,7 @@ const conect = require('../config/BD_CONECT');
 
 class ConsultaModel {
   constructor (teve_febre, tomou_medicamento, melhorou_apos_medicamento, contato_alguem_corona, viagem_internacional, outros_sintomas, gravidez, id_usuario) {
+    this._id = null;
     this._teve_febre = teve_febre;
     this._tomou_medicamento = tomou_medicamento;
     this._melhorou_apos_medicamento =  melhorou_apos_medicamento;
@@ -12,6 +13,9 @@ class ConsultaModel {
     this._id_usuario = id_usuario;
   }
   
+  get id() {
+    return this._id;
+  }
   get teve_febre() {
     return this._teve_febre;
   }
@@ -35,6 +39,11 @@ class ConsultaModel {
   }
   get id_usuario(){
     return this._id_usuario;
+  }
+  
+  
+  set id(value){
+    this._id = value;
   }
   
   set teve_febre(value){
@@ -92,11 +101,11 @@ class ConsultaModel {
           c.contato_alguem_corona, c.viagem_internacional, c.outros_sintomas, c.gravidez
           sintomas.descricao AS sintomas FROM consutlas AS c, consulta_para_sintomas AS cs, sintomas
           WHERE c.id_usuario = ? AND cs.id_consulta = c.id AND cs.id_sintoma = sintomas.id`, [usuario._id,], (err, result) => {
-              if (err) {
-                reject(err.message);
-              } else {
-                resolve(result);
-             }
+            if (err) {
+              reject(err.message);
+            } else {
+              resolve(result);
+            }
           });
         });
       }      

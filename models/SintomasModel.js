@@ -2,11 +2,19 @@ const conect = require('../config/BD_CONECT');
 
 class SintomasModel {
   constructor (descricao) {
+    this._id = null;
     this._descricao = descricao;
   }
   
+  get id(){
+    return this._id
+  }
   get descricao() {
     return this._descricao;
+  }
+
+  set id(value){
+    this._id = value
   }
   set descricao(value){
     this._descricao = value
