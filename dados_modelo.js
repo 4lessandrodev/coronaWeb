@@ -16,9 +16,9 @@ const consultas =[
     tomou_medicamento: 0,
     melhorou_apos_medicamento: 1,
     contato_alguem_corona: 0,
-    viagem_internaciona: 1,
+    viagem_internacional: 1,
     outros_sintomas: ['vomitos', 'convulções', 'falta de ar', 'dedos azulados e palidos'],
-    gavidez: 0
+    gravidez: 0
   }, {
     id_consulta: 2,
     data_hora: '15-03-2020 10:00:00 GMT320',
@@ -31,6 +31,6 @@ const consultas =[
     contato_alguem_corona: 0,
     viagem_internaciona: 0,
     outros_sintomas: ['vomitos', 'convulções', 'falta de ar', 'dedos azulados e palidos'],
-    gavidez: 0
+    gravidez: 0
   }
 ];
