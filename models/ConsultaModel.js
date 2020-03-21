@@ -37,7 +37,6 @@ class ConsultaModel {
       return this._id_usuario;
   }
 
-
   set teve_febre(value){
     this._teve_febre = value
   }
