@@ -6,3 +6,9 @@ body {
 a {
   color: #00B7FF;
 }
+
+#icon{
+  width: '50%';
+  height: '100%';
+  background-color: #00B7FF;
+}
