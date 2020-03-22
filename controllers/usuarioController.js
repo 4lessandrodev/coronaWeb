@@ -1,5 +1,6 @@
 const usuarioModel = require('./../models/UsuarioModel');
 const perfilModel = require('./../models/PerfilModel');
+const respostasModel = require('./../models/RespostasModel')
 
 
 
@@ -29,6 +30,13 @@ const realizarLogin = (req, res, next) => {
   });
 };
 
+
+const salvarRespostas = (req, res, next) => {
+  const resposta = new respostasModel(req.body.resposta, req.body.id_usuario, req.body.id_pergunta);
+  resposta.salvarRespostas(resposta).then( respo => {
+      res.send('Resposta salva')
+  })
+}
 
 
 
