@@ -23,6 +23,7 @@ CREATE TABLE IF NOT EXISTS `alessandrodev`.`usuario` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `telefone` VARCHAR(11) NOT NULL,
   `senha` VARCHAR(50) NOT NULL,
+  `admin` TINYINT(1) NOT NULL DEFAULT 0,
   PRIMARY KEY (`id`),
   UNIQUE INDEX `telefone_UNIQUE` (`telefone` ASC))
 ENGINE = InnoDB;
@@ -115,6 +116,25 @@ CREATE TABLE IF NOT EXISTS `alessandrodev`.`consulta_para_sintomas` (
   CONSTRAINT `fk_consulta_para_sintomas_2`
     FOREIGN KEY (`id_consulta`)
     REFERENCES `alessandrodev`.`consultas` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `alessandrodev`.`perguntas_auxiliares`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `alessandrodev`.`perguntas_auxiliares` ;
+
+CREATE TABLE IF NOT EXISTS `alessandrodev`.`perguntas_auxiliares` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `descricao` VARCHAR(200) NOT NULL,
+  `id_sintoma` INT NOT NULL,
+  PRIMARY KEY (`id`),
+  INDEX `fk_perguntas_auxiliares_1_idx` (`id_sintoma` ASC),
+  CONSTRAINT `fk_perguntas_auxiliares_1`
+    FOREIGN KEY (`id_sintoma`)
+    REFERENCES `alessandrodev`.`sintomas` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
