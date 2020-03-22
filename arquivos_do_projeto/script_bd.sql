@@ -67,6 +67,8 @@ CREATE TABLE IF NOT EXISTS `alessandrodev`.`sintomas` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `descricao` VARCHAR(45) NOT NULL,
   `grupo_risco` TINYINT(1) NOT NULL DEFAULT 0,
+  `pergunta_mae` TINYINT(1) NOT NULL DEFAULT 0,
+  `ativo` TINYINT(1) NOT NULL DEFAULT 0,
   PRIMARY KEY (`id`))
 ENGINE = InnoDB;
 
@@ -91,13 +93,8 @@ DROP TABLE IF EXISTS `alessandrodev`.`consultas` ;
 CREATE TABLE IF NOT EXISTS `alessandrodev`.`consultas` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `data_hora` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `teve_febre` TINYINT(1) NOT NULL,
-  `tomou_medicamento` TINYINT(1) NOT NULL DEFAULT 0,
-  `melhorou_apos_medicamento` TINYINT(1) NOT NULL,
-  `contato_alguem_corona` TINYINT(1) NOT NULL,
+  `contato_alguem_corona` TINYINT(1) NOT NULL DEFAULT 0,
   `viagem_internacional` TINYINT(1) NOT NULL DEFAULT 0,
-  `outros_sintomas` TINYINT(1) NOT NULL,
-  `gravidez` TINYINT(1) NOT NULL DEFAULT 0,
   `id_usuario` INT NOT NULL,
   `id_status_consulta` INT NOT NULL DEFAULT 1,
   PRIMARY KEY (`id`),
