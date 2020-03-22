@@ -2,6 +2,7 @@ const ConsultaParaSintomas = require('./../models/ConsultaParaSintomas');
 const Consulta = require('./../models/ConsultaModel');
 const Usuario = require('./../models/UsuarioModel');
 const Sintomas = require('./../models/SintomasModel');
+const Observacao = require('./../models/ObservacaoConsultaModel');
 
 
 
@@ -58,7 +59,14 @@ const verConsulta = (req, res, next) => {
   });
 };
 
+const salvarObservaCaoEmConsulta = (req, res, next) => {
+  let observacao = new Observacao(req.params.id, req.body.descricao);
+  observacao.salvarObservacao(observacao).then(resposta => {
+    res.send('Observação salva');
+  });
+};
 
 
 
-module.exports = { cadastrarUsuario, salvarConsultas, listarResumoConsultasUsuario, verConsulta };
+
+module.exports = { cadastrarUsuario, salvarConsultas, listarResumoConsultasUsuario, verConsulta, salvarObservaCaoEmConsulta };
