@@ -20,5 +20,8 @@ router.get('/consultas', consultaController.listarConsultas);
 //Realizar login
 router.post('/login', usuarioController.realizarLogin);
 
+//Visualizar a consulta selecionada
+router.get('/consulta/:id', consultaController.verConsulta);
+
 
 module.exports = router; 
