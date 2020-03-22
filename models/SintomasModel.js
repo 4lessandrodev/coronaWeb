@@ -32,11 +32,11 @@ class SintomasModel {
     });   
   }
 
-  listarSintomasDeUmaConsulta(sintoma, consulta) {
+  listarSintomasDeUmaConsulta(consulta) {
     return new Promise((resolve, reject) => {
       conect.query(`SELECT sin.id, sin.descricao 
-      FROM sintomas AS sin, consultas AS con, consulta_para_sintomas AS con_sin 
-      WHERE con_sin.id_consulta = con.id AND sin.id = con_sin.id_consulta AND sin.id = ? AND con.id = ?`, [sintoma._id, consulta._id], (err, result) => {
+FROM sintomas AS sin, consultas AS con, consulta_para_sintomas AS con_sin 
+WHERE con_sin.id_consulta = con.id AND sin.id = con_sin.id_sintoma AND con.id = ?`, [consulta._id], (err, result) => {
         if (err) {
           reject(err.message);
         } else {

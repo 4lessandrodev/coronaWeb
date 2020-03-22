@@ -11,14 +11,14 @@ const cadastrarUsuario = (req, res, next) => {
 };
 
 const cadastradoDePerfil = (req, res, next, id_usuario) => {
-  const perfil = new perfilModel(req.body.nome, req.body.email, req.body.idade, req.body.genero, id_usuario);
+  const perfil = new perfilModel(req.body.nome, req.body.email, req.body.idade, req.body.genero, id_usuario, req.body.endereco, req.body.bairro, req.body.cidade, req.body.estado, req.body.cep, req.body.ibge);
   perfil.salvarPerfil(perfil).then(resposta => {
     res.send(`usuario cadastrado`);
   });
 };
 
 
-const realizarLogin = (req, res, next, id_usuario) => {
+const realizarLogin = (req, res, next) => {
   const usuario = new usuarioModel(req.body.telefone, req.body.senha);
   usuario.login(usuario).then(resposta => {
     if (resposta[0] !== null) {

@@ -40,8 +40,15 @@ CREATE TABLE IF NOT EXISTS `alessandrodev`.`perfil` (
   `email` VARCHAR(70) NOT NULL,
   `genero` VARCHAR(1) NOT NULL,
   `id_usuario` INT NOT NULL,
+  `endereco` VARCHAR(50) NOT NULL,
+  `cidade` VARCHAR(45) NOT NULL,
+  `estado` VARCHAR(2) NOT NULL,
+  `bairro` VARCHAR(80) NOT NULL,
+  `ibge` VARCHAR(45) NOT NULL DEFAULT '00000',
+  `cep` VARCHAR(8) NOT NULL DEFAULT '00000000',
   PRIMARY KEY (`id`),
   INDEX `fk_id_usuario_1_idx` (`id_usuario` ASC),
+  UNIQUE INDEX `email_UNIQUE` (`email` ASC),
   CONSTRAINT `fk_id_usuario_1`
     FOREIGN KEY (`id_usuario`)
     REFERENCES `alessandrodev`.`usuario` (`id`)
