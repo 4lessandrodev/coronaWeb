@@ -24,5 +24,11 @@ const alterarStatusConsulta = (req, res, next)=>{
   });
 };
 
+const salvarPergunta = (req, res, next)=>{
+  const pergunta = new perguntasAuxiliares(req.body.descricao, req.body.id_sintoma, req.body.frequencia, req.body.gatilho_em_horas);
+  pergunta.salvarPerguntasAuxiliares(pergunta).then( resposta => {
+    res.send('Pergunda salva com sucesso');
+  });
+};
 
-module.exports = { salvarSintomas, salvarPerguntaAuxiliar, alterarStatusConsulta };
+module.exports = { salvarSintomas, salvarPerguntaAuxiliar, alterarStatusConsulta, salvarPergunta };
