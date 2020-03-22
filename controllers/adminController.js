@@ -9,7 +9,6 @@ const salvarSintomas = (req, res, next) => {
 };
 
 const salvarPerguntaAuxiliar = (req, res, next) => {
-
   const pergunta = new perguntasAuxiliares(req.body.descricao, req.body.id_sintoma,
     req.body.frequencia, req.body.gatilho_em_horas);
     pergunta.salvarPerguntasAuxiliares(pergunta).then( resposta => {
