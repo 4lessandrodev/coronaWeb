@@ -5,7 +5,7 @@ class RespostasModel {
     this.id = null;
     this._resposta = resposta;
     this._id_usuario = id_usuario;
-    this._id_pergunta = id_pergunta
+    this._id_pergunta = id_pergunta;
   }
   
   get id(){
@@ -18,7 +18,7 @@ class RespostasModel {
     return this._id_usuario;
   }
   get id_pergunta() {
-      return this._id_pergunta
+    return this._id_pergunta;
   }
 
   set id(value){
@@ -31,7 +31,7 @@ class RespostasModel {
     this._id_usuario = value;
   }
   set id_pergunta(value){
-      this._id_pergunta = value
+    this._id_pergunta = value;
   }
 
   salvarRespostas(resposta) {

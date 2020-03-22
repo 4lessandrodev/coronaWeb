@@ -131,6 +131,19 @@ class ConsultaModel {
           });
         });
       }
+      
+      alterarStatusDaConsulta(consulta) {
+        return new Promise((resolve, reject) => {
+          conect.query(`UPDATE consultas SET id_status_consulta = ? WHERE id = ?`, [consulta._id_status_consulta, consulta._id], (err, result) => {
+            if (err) {
+              reject(err.message);
+            } else {
+              resolve(result);
+            }
+          });
+        });
+      }
+      
     }
     
     module.exports =  ConsultaModel;

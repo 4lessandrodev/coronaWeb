@@ -23,5 +23,8 @@ router.post('/login', usuarioController.realizarLogin);
 //Visualizar a consulta selecionada
 router.get('/consulta/:id', consultaController.verConsulta);
 
+//Salvar resposta auxiliar do usuário 
+router.post('/salvar-resposta', usuarioController.salvarRespostas);
+
 
 module.exports = router; 
