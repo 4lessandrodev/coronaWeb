@@ -41,17 +41,17 @@ const listarConsultas = (req, res, next) => {
 
 
 const verConsulta = (req, res, next) => {
-  let consultaRetornada = [];
+  let consultaSelecionada;
   const consulta = new Consulta();
   const usuario = new Usuario();
   const sintoma = new Sintomas();
   usuario.id = req.body.id;
   consulta.id = req.params.id;
   consulta.verConsultaEspecificaDoUsuario(usuario, consulta).then(resposta => {
-    consultaRetornada.push(resposta[0]);
+    consultaSelecionada = resposta[0];
     sintoma.listarSintomasDeUmaConsulta(consulta).then(sintomas => {
-      consultaRetornada.push(sintomas);
-      res.send(consultaRetornada);
+      consultaSelecionada.sintomas = sintomas;
+      res.send(consultaSelecionada);
     });
   });
 };
