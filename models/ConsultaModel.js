@@ -1,7 +1,7 @@
 const conect = require('../config/BD_CONECT');
 
 class ConsultaModel {
-  constructor (teve_febre, tomou_medicamento, melhorou_apos_medicamento, contato_alguem_corona, viagem_internacional, outros_sintomas, gravidez, id_usuario) {
+  constructor (teve_febre, tomou_medicamento, melhorou_apos_medicamento, contato_alguem_corona, viagem_internacional, outros_sintomas, gravidez, id_usuario, id_status_consulta = 1) {
     this._id = null;
     this._teve_febre = teve_febre;
     this._tomou_medicamento = tomou_medicamento;
@@ -11,6 +11,7 @@ class ConsultaModel {
     this._outros_sintomas = outros_sintomas;
     this._gravidez = gravidez;
     this._id_usuario = id_usuario;
+    this._id_status_consulta = id_status_consulta;
   }
   
   get id() {
@@ -39,6 +40,9 @@ class ConsultaModel {
   }
   get id_usuario(){
     return this._id_usuario;
+  }
+  get id_status_consulta() {
+    return this._id_status_consulta;
   }
   
   
@@ -73,19 +77,24 @@ class ConsultaModel {
     this._id_usuario = value;
   }
   
+  set id_status_consulta(value) {
+    this._id_status_consulta = value;
+  }
+  
   salvarConsulta(consulta) {
     return new Promise((resolve, reject) => {
       conect.query(`INSERT INTO consultas(
         teve_febre, tomou_medicamento, melhorou_apos_medicamento,
-        contato_alguem_corona, viagem_internacional, outros_sintomas, gravidez, id_usuario
-        ) VALUES(?,?,?,?,?,?,?,?)`, [consulta._teve_febre, 
+        contato_alguem_corona, viagem_internacional, outros_sintomas, gravidez, id_usuario, id_status_consulta
+        ) VALUES(?,?,?,?,?,?,?,?,?)`, [consulta._teve_febre, 
           consulta._tomou_medicamento, 
           consulta._melhorou_apos_medicamento, 
           consulta._contato_alguem_corona,
           consulta._viagem_internacional,
           consulta._outros_sintomas,
           consulta._gravidez, 
-          consulta._id_usuario], (err, result) => {
+          consulta._id_usuario,
+          consulta._id_status_consulta], (err, result) => {
             if (err) {
               reject(err.message);
             } else {
@@ -97,8 +106,10 @@ class ConsultaModel {
       
       verConsultaEspecificaDoUsuario(usuario, consulta) {
         return new Promise((resolve, reject) => {
-          conect.query(`SELECT * FROM consultas AS c
-          WHERE c.id_usuario = ? AND c.id = ?`, [usuario._id, consulta._id,], (err, result) => {
+          conect.query(`SELECT c.id, c.data_hora, c.teve_febre, c.tomou_medicamento, c.melhorou_apos_medicamento, c.contato_alguem_corona,
+          c.viagem_internacional, c.outros_sintomas, c.gravidez, c.id_usuario, st.descricao AS status_consulta
+          FROM consultas AS c, status_para_consultas AS st
+          WHERE st.id = c.id_status_consulta AND c.id_usuario = ? AND c.id = ?`, [usuario._id, consulta._id,], (err, result) => {
             if (err) {
               reject(err.message);
             } else {
@@ -110,8 +121,8 @@ class ConsultaModel {
       
       listarResumoConsultaDoUsuario(usuario) {
         return new Promise((resolve, reject) => {
-          conect.query(`SELECT c.id, c.data_hora
-          FROM consultas AS c WHERE c.id_usuario = ? AND c.id`, [usuario._id,], (err, result) => {
+          conect.query(`SELECT c.id, c.data_hora, st.descricao AS status_consulta
+          FROM consultas AS c , status_para_consultas AS st WHERE c.id_usuario = ? AND c.id_status_consulta`, [usuario._id], (err, result) => {
             if (err) {
               reject(err.message);
             } else {

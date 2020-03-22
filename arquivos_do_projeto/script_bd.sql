@@ -150,6 +150,8 @@ CREATE TABLE IF NOT EXISTS `alessandrodev`.`perguntas_auxiliares` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `descricao` VARCHAR(200) NOT NULL,
   `id_sintoma` INT NOT NULL,
+  `frequencia` INT NOT NULL DEFAULT 0,
+  `gatilho_em_horas` TIME NOT NULL DEFAULT '00:00:00',
   PRIMARY KEY (`id`),
   INDEX `fk_perguntas_auxiliares_1_idx` (`id_sintoma` ASC),
   CONSTRAINT `fk_perguntas_auxiliares_1`
@@ -174,6 +176,33 @@ CREATE TABLE IF NOT EXISTS `alessandrodev`.`observacoes_para_consulta` (
   CONSTRAINT `fk_observacoes_para_consulta_1`
     FOREIGN KEY (`id_consulta`)
     REFERENCES `alessandrodev`.`consultas` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `alessandrodev`.`respostas`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `alessandrodev`.`respostas` ;
+
+CREATE TABLE IF NOT EXISTS `alessandrodev`.`respostas` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `resposta` INT NOT NULL DEFAULT 0,
+  `id_usuario` INT NOT NULL,
+  `id_pergunta` INT NOT NULL,
+  `data_hora` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`),
+  INDEX `fk_respostas_1_idx` (`id_usuario` ASC),
+  INDEX `fk_respostas_2_idx` (`id_pergunta` ASC),
+  CONSTRAINT `fk_respostas_1`
+    FOREIGN KEY (`id_usuario`)
+    REFERENCES `alessandrodev`.`usuario` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_respostas_2`
+    FOREIGN KEY (`id_pergunta`)
+    REFERENCES `alessandrodev`.`perguntas_auxiliares` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;

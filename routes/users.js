@@ -14,8 +14,8 @@ router.post('/cadastro', usuarioController.cadastrarUsuario);
 //Salvar uma consulta do usuário
 router.post('/salvar-consulta', consultaController.salvarConsultas);
 
-//Listar as consultas do usuario
-router.get('/consultas', consultaController.listarConsultas);
+//Listar resumo das consultas do usuario
+router.get('/consultas', consultaController.listarResumoConsultasUsuario);
 
 //Realizar login
 router.post('/login', usuarioController.realizarLogin);
