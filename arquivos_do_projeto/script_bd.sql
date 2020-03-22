@@ -66,6 +66,19 @@ DROP TABLE IF EXISTS `alessandrodev`.`sintomas` ;
 CREATE TABLE IF NOT EXISTS `alessandrodev`.`sintomas` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `descricao` VARCHAR(45) NOT NULL,
+  `grupo_risco` TINYINT(1) NOT NULL DEFAULT 0,
+  PRIMARY KEY (`id`))
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `alessandrodev`.`status_para_consultas`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `alessandrodev`.`status_para_consultas` ;
+
+CREATE TABLE IF NOT EXISTS `alessandrodev`.`status_para_consultas` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `descricao` VARCHAR(30) NOT NULL,
   PRIMARY KEY (`id`))
 ENGINE = InnoDB;
 
@@ -86,11 +99,18 @@ CREATE TABLE IF NOT EXISTS `alessandrodev`.`consultas` (
   `outros_sintomas` TINYINT(1) NOT NULL,
   `gravidez` TINYINT(1) NOT NULL DEFAULT 0,
   `id_usuario` INT NOT NULL,
+  `id_status_consulta` INT NOT NULL DEFAULT 1,
   PRIMARY KEY (`id`),
   INDEX `fk_consultas_1_idx` (`id_usuario` ASC),
+  INDEX `fk_consultas_2_idx` (`id_status_consulta` ASC),
   CONSTRAINT `fk_consultas_1`
     FOREIGN KEY (`id_usuario`)
     REFERENCES `alessandrodev`.`usuario` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_consultas_2`
+    FOREIGN KEY (`id_status_consulta`)
+    REFERENCES `alessandrodev`.`status_para_consultas` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
@@ -135,6 +155,25 @@ CREATE TABLE IF NOT EXISTS `alessandrodev`.`perguntas_auxiliares` (
   CONSTRAINT `fk_perguntas_auxiliares_1`
     FOREIGN KEY (`id_sintoma`)
     REFERENCES `alessandrodev`.`sintomas` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `alessandrodev`.`observacoes_para_consulta`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `alessandrodev`.`observacoes_para_consulta` ;
+
+CREATE TABLE IF NOT EXISTS `alessandrodev`.`observacoes_para_consulta` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `descricao` VARCHAR(250) NOT NULL,
+  `id_consulta` INT NOT NULL,
+  PRIMARY KEY (`id`),
+  INDEX `fk_observacoes_para_consulta_1_idx` (`id_consulta` ASC),
+  CONSTRAINT `fk_observacoes_para_consulta_1`
+    FOREIGN KEY (`id_consulta`)
+    REFERENCES `alessandrodev`.`consultas` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
