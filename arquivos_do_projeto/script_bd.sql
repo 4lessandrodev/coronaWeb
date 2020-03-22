@@ -188,7 +188,7 @@ DROP TABLE IF EXISTS `alessandrodev`.`respostas` ;
 
 CREATE TABLE IF NOT EXISTS `alessandrodev`.`respostas` (
   `id` INT NOT NULL AUTO_INCREMENT,
-  `resposta` INT NOT NULL DEFAULT 0,
+  `resposta` TINYINT(1) NOT NULL DEFAULT 0,
   `id_usuario` INT NOT NULL,
   `id_pergunta` INT NOT NULL,
   `data_hora` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
