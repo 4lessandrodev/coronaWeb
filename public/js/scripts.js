@@ -157,3 +157,34 @@ myInput.onkeyup = function() {
         length.classList.add("invalid");
     }
 }
+
+// DASHBOARD
+
+// jQuery(document).ready(function() {
+
+
+//     /*
+//         Forms show / hide
+//     */
+//     $('.show-profile-page').on('click', function() {
+//         if (!$(this).hasClass('active')) {
+//             $('.show-dashboard-page').removeClass('active');
+//             $(this).addClass('active');
+//             $('.profile-page').fadeOut('fast', function() {
+//                 $('.dashboard-page').fadeIn('fast');
+//             });
+//         }
+//     });
+//     // ---
+//     $('.show-dashboard-page').on('click', function() {
+//         if (!$(this).hasClass('active')) {
+//             $('.show-profile-page').removeClass('active');
+//             $(this).addClass('active');
+//             $('.dashboard-page').fadeOut('fast', function() {
+//                 $('.profile-page').fadeIn('fast');
+//             });
+//         }
+//     });
+
+
+// });
