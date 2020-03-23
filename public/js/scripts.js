@@ -41,7 +41,7 @@ jQuery(document).ready(function() {
             if ($(this).val() == "") {
                 e.preventDefault();
                 $(this).addClass('input-error');
-                $(this).setCustomValidity("Faltou preencher aqui")
+                $(this).setCustomValidity("Faltou preencher aqui");
             } else {
                 $(this).removeClass('input-error');
             }
@@ -72,8 +72,8 @@ jQuery(document).ready(function() {
 
 });
 
-var password = document.getElementById("password"),
-    confirm_password = document.getElementById("confirm_password");
+var password = document.getElementById("senha"),
+    confirm_password = document.getElementById("senha-confirmacao");
 
 function validatePassword() {
     if (password.value != confirm_password.value) {
@@ -93,14 +93,14 @@ function validarIdade() {
         idade.setCustomValidity("Idade não pode ser menor que 1");
     }
     if (idade.value > 99) {
-        idade.setCustomValidity("Idade não pode ser maior que 99")
+        idade.setCustomValidity("Idade não pode ser maior que 99");
     }
 
 }
 
 idade.onchange = validarIdade;
 
-var myInput = document.getElementById("password");
+var myInput = document.getElementById("senha");
 var letter = document.getElementById("letter");
 var capital = document.getElementById("capital");
 var number = document.getElementById("number");
@@ -117,7 +117,7 @@ myInput.onblur = function() {
 }
 
 // When the user starts to type something inside the password field
-myInput.onkeyup = function() {
+myInput.onkeyup = function () {
     // Validate lowercase letters
     var lowerCaseLetters = /[a-z]/g;
     if (myInput.value.match(lowerCaseLetters)) {
@@ -156,4 +156,4 @@ myInput.onkeyup = function() {
         length.classList.remove("valid");
         length.classList.add("invalid");
     }
-}
+};
