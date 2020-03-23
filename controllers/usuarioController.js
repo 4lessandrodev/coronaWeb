@@ -13,6 +13,7 @@ const cadastrarUsuario = (req, res, next) => {
 
 const cadastradoDePerfil = (req, res, next, id_usuario) => {
   const perfil = new perfilModel(req.body.nome, req.body.email, req.body.idade, req.body.genero, id_usuario, req.body.endereco, req.body.bairro, req.body.cidade, req.body.estado, req.body.cep, req.body.ibge);
+  perfil.cep = req.body.cep.replace('-', '');
   perfil.salvarPerfil(perfil).then(resposta => {
     res.send(`usuario cadastrado`);
   });
@@ -33,12 +34,12 @@ const realizarLogin = (req, res, next) => {
 
 const salvarRespostas = (req, res, next) => {
   const resposta = new respostasModel(req.body.resposta, req.body.id_usuario, req.body.id_pergunta);
-  resposta.salvarRespostas(resposta).then( respo => {
-      res.send('Resposta salva')
-  })
-}
+  resposta.salvarRespostas(resposta).then(respo => {
+    res.send('Resposta salva');
+  });
+};
 
 
 
 
-module.exports = { cadastrarUsuario, realizarLogin};
+module.exports = { cadastrarUsuario, realizarLogin, salvarRespostas};

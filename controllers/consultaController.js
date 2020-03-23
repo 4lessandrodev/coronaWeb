@@ -24,8 +24,7 @@ const salvarConsultaParaSintomas = (req, res, next, id_consulta, ids_sintomas) =
 };
 
 const salvarConsultas = (req, res, next) => {
-  const consulta = new Consulta(req.body.teve_febre, req.body.tomou_medicamento, req.body.melhorou_apos_medicamento,
-    req.body.contato_alguem_corona, req.body.viagem_internacional, req.body.outros_sintomas, req.body.gravidez,
+  const consulta = new Consulta(req.body.contato_alguem_corona, req.body.viagem_internacional,
     req.body.id_usuario, req.body.id_status_consulta);
   consulta.salvarConsulta(consulta).then(resposta => {
     salvarConsultaParaSintomas(req, res, next, resposta.insertId, req.body.ids_sintomas);

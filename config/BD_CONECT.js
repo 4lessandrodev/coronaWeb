@@ -17,10 +17,9 @@ module.exports = conect;
 
 
 
-/*
 //LOCAL 
 // get the client
-
+/*
 // Create the connection pool. The pool-specific settings are the defaults
 const conect = mysql.createPool({
   host: 'localhost',
