@@ -1,48 +1,53 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
-    <meta charset='utf-8'>
-    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
-    <title>Dashboard</title>
-    <meta name='viewport' content='width=device-width, initial-scale=1'>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/stylesheets/dashboard.css">
+    <title>Meu Perfil</title>
 </head>
 
 <body>
-    <div class="dashboard-page">
-        <header>
-            <nav class="container-fluid">
-                <h1>André Luis da Silva Oliveira</h1>
-                <span class="show-profile-page"><a href="#">Acessar perfil</a></span>
-            </nav>
-        </header>
-        <main>
-            <section class="atendimentos">
-                <h2>Seus atendimentos</h2>
-                <ol>
-                    <li>1º Atendimento</li>
-                    <li>2º Atendimento</li>
-                    <li>3º Atendimento</li>
-                    <li>4º Atendimento</li>
-                </ol>
-            </section>
-            <section>
-                <h2>Questionário</h2>
-                <form class="form" action="">
-                    <label for="pergunta1">Você teve coriza?</label>
-                    <div>
-                        <button class="btn btn-success">Sim</button>
-                        <button class="btn btn-danger">Não</button>
-                    </div>
-                </form>
-            </section>
-        </main>
-    </div>
-    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+    <header>
+        <nav class="container-fluid">
+            <h1>André Luis da Silva Oliveira</h1>
+        </nav>
+    </header>
+    <main>
+        <h2 id="h-dados">Dados do usuário</h2>
+
+        <form class="dados" action="">
+            <div class="form-group">
+                <label for="nome">Nome</label>
+                <input value="André" readonly type="text">
+            </div>
+            <div class="form-group">
+                <label for="idade">Idade</label>
+                <input value="19 anos" readonly type="text">
+            </div>
+            <div class="form-group">
+                <label for="sexo">Sexo</label>
+                <input value="Masculino" readonly type="text">
+            </div>
+            <div class="form-group">
+                <label for="telefone">Telefone</label>
+                <input value="+5511912345678" readonly type="tel">
+            </div>
+            <div class="form-group">
+                <label for="endereco">Endereço</label>
+                <input value="CEP: 05776450" readonly type="text">
+                <input value="Rua dos Perdidos - Nº 13" readonly type="text">
+            </div>
+            <div class="form-group">
+                <label for="email">E-mail</label>
+                <input value="mail@mail.com" readonly type="mail">
+            </div>
+            <div class="form-group">
+                <button type="button">Editar Perfil</button>
+            </div>
+        </form>
+    </main>
 </body>
 
 </html>

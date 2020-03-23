@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css?family=Poppins:400,800&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Poppins:400,500,800&display=swap');
 * {
     box-sizing: border-box;
 }
@@ -120,4 +120,52 @@ main h2 {
     .form button.btn {
         margin: 70px 0;
     }
+}
+
+
+/* perfil */
+
+#h-dados {
+    text-align: center;
+    margin: 43px auto;
+    text-transform: uppercase;
+}
+
+.dados {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    height: 80vh;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+}
+
+.dados label {
+    color: #000e;
+    font-weight: 800;
+    font-size: 1rem;
+    text-transform: uppercase;
+}
+
+.dados input {
+    border: none;
+    background-color: transparent;
+    font-size: 1rem;
+    font-style: normal;
+    font-weight: 500;
+}
+
+.dados button {
+    background-color: #63A69F;
+    border-radius: 10px;
+    align-self: center;
+    color: #fffe;
+    font-family: 'Poppins' sans-serif;
+    font-weight: 800;
+    border: none;
+    cursor: pointer;
+    padding: 12px 98px;
 }
