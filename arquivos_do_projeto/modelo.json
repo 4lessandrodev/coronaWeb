@@ -1,0 +1,13 @@
+{
+    "user_id": "1",
+    "nome": "Usuario name",
+    "email": "usuario@domain.com",
+    "genero": "F",
+    "endereco": "Rua vai quem quer n50",
+    "cidade": "Sao Paulo",
+    "estado": "SP",
+    "cep": "75520140",
+    "idade": "80",
+    "ibge": "5030350",
+    "telefone": "11912345678"
+}

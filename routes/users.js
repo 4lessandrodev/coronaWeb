@@ -5,7 +5,7 @@ const consultaController = require('./../controllers/consultaController');
 
 /* GET users listing. */
 router.get('/', function(req, res, next) {
-  res.send('respond with a resource');
+    res.send('respond with a resource');
 });
 
 //Cadastrar um usuário 
@@ -26,5 +26,6 @@ router.get('/consulta/:id', consultaController.verConsulta);
 //Salvar resposta auxiliar do usuário 
 router.post('/salvar-resposta', usuarioController.salvarRespostas);
 
-
-module.exports = router; 
+//Acessar perfil - criada por Lucas para teste de renderização dinâmica
+router.get('/perfil', usuarioController.verPerfil)
+module.exports = router;
