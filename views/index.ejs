@@ -1,13 +1,13 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR">
 
 <head>
-
+    
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Corona</title>
-
+    
     <!-- CSS -->
     <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Roboto:400,100,300,500">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
@@ -16,12 +16,12 @@
 </head>
 
 <body>
-
+    
     <!-- Top content -->
     <div class="top-content">
         <div class="background-color">
             <div class="container">
-
+                
                 <div class="row">
                     <div class="col-sm-12 text">
                         <h1>Corona</h1>
@@ -32,22 +32,22 @@
                         </div>
                     </div>
                 </div>
-
+                
                 <div class="row">
                     <div class="col-sm-12 show-forms">
                         <span class="show-login-form active">Entrar</span>
                         <span class="show-register-form">Cadastre-se</span>
-
-
+                        
+                        
                     </div>
                 </div>
-
+                
                 <div class="row register-form">
                     <div class="col-sm-12">
-                        <form role="form" action="" method="" class="r-form">
+                        <form role="form" action="/users/cadastro" method="POST" class="r-form" id="form-cadastro">
                             <div class="form-group">
                                 <label class="sr-only" for="r-form-first-name">Nome Completo</label>
-                                <input required type="text" name="r-form-first-name" placeholder="Nome Completo" class="r-form-first-name form-control" id="r-form-first-name">
+                                <input required type="text" name="nome" placeholder="Nome Completo" class="r-form-first-name form-control" id="nome">
                             </div>
                             <div class="form-group">
                                 <label class="sr-only" for="idade">Idade</label>
@@ -55,13 +55,13 @@
                             </div>
                             <div class="form-group">
                                 <label class="sr-only" for="r-form-email">E-mail</label>
-                                <input required type="email" name="r-form-email" placeholder="Email..." class="r-form-email form-control" id="r-form-email">
+                                <input required type="email" name="email" placeholder="Email..." class="r-form-email form-control" id="email">
                             </div>
                             <div class="form-group">
-                                <select required class="custom-select" name="sexo">
-									<option value="M">Masculino</option>
-									<option value="F">Feminino</option>
-								</select>
+                                <select required class="custom-select" name="genero">
+                                    <option value="M">Masculino</option>
+                                    <option value="F">Feminino</option>
+                                </select>
                             </div>
                             <div class="from-group">
                                 <label for="telefone" class="sr-only">Telefone</label>
@@ -70,27 +70,28 @@
                             <div class="form-row">
                                 <div class="form-group col">
                                     <label class="sr-only" for="cep">cep</label>
-                                    <input type="text" class="form-control" id="cep" placeholder="CEP: 01000-001" required pattern="\d{5}-?\d{3}">
+                                    <input type="text" class="form-control" id="cep" id="cep" name="cep" placeholder="CEP: 01000-001" required pattern="\d{5}-?\d{3}">
                                 </div>
                                 <div class="form-group col">
                                     <label for="numeroCasa" class="sr-only">Número</label>
-                                    <input required type="text" name="numeroCasa" id="numeroCasa" class="form-control" placeholder="Número">
+                                    <input required type="text" name="numero" id="numero" class="form-control" placeholder="Número">
                                 </div>
                             </div>
-
+                            
                             <input type="hidden" id="endereco" name="endereco">
                             <input type="hidden" id="bairro" name="bairro">
                             <input type="hidden" id="cidade" name="cidade">
                             <input type="hidden" id="estado" name="estado">
                             <input type="hidden" id="ibge" name="ibge">
-
+                            
                             <div class="form-group">
-
-                                <input class="l-form-password form-control " type="password" placeholder="Senha" id="password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" required>
-                                <input class="l-form-password form-control" type="password" placeholder="Confirme Senha" id="confirm_password" required>
-
+                                
+                                <input class="l-form-password form-control " type="password" name="senha" placeholder="Senha" id="senha" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" required>
+                                <input class="l-form-password form-control" type="password" name="senha-confirmacao"
+                                placeholder="Confirme Senha" id="senha-confirmacao" required>
+                                
                             </div>
-
+                            
                             <div id="message" style="display: none;">
                                 <h3>Senha deve conter o seguinte:</h3>
                                 <p id="letter" class="invalid"> Uma letra <b>minúscula</b> </p>
@@ -98,23 +99,23 @@
                                 <p id="number" class="invalid">Um <b>número</b></p>
                                 <p id="length" class="invalid">Mínimo <b>8 caracteres</b></p>
                             </div>
-
+                            
                             <button type="submit " class="btn ">Cadastrar</button>
                         </form>
                     </div>
-
+                    
                 </div>
-
+                
                 <div class="row login-form">
                     <div class="col-sm-12 ">
                         <form role="form " action=" " method="" class="l-form ">
                             <div class="form-group ">
                                 <label class="sr-only " for="l-form-username ">Usuário</label>
-                                <input type="tel " name="l-form-username " placeholder="Telefone... " class="l-form-username form-control " id="l-form-username ">
+                                <input type="tel " name="telefone" placeholder="Telefone... " class="l-form-username form-control " id="telefone">
                             </div>
                             <div class="form-group ">
                                 <label class="sr-only " for="l-form-password ">Senha</label>
-                                <input type="password " name="l-form-password " placeholder="Senha... " class="l-form-password form-control " id="l-form-password ">
+                                <input type="password " name="senha" placeholder="Senha... " class="l-form-password form-control " id="senha">
                             </div>
                             <button type="submit " class="btn ">Entrar</button>
                         </form>
@@ -128,7 +129,7 @@
                         </div> -->
                     </div>
                 </div>
-
+                
             </div>
         </div>
     </div>
@@ -136,17 +137,17 @@
     <footer>
         <div class="container ">
             <div class="row ">
-
+                
                 <div class="col-sm-12 ">
                     <div class="footer-border "></div>
                     <p>Combate ao Corona</p>
                 </div>
-
+                
             </div>
         </div>
     </footer>
-
-
+    
+    
     <!-- Javascript -->
     <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js " integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n " crossorigin="anonymous "></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js " integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo " crossorigin="anonymous "></script>
@@ -154,11 +155,12 @@
     <script src="/js/jquery-1.11.1.min.js "></script>
     <script src="/js/jquery.backstretch.min.js "></script>
     <script src="/js/scripts.js "></script>
-
+    <script src="/js/busca-cep.js"></script>
+    
     <!--[if lt IE 10]>
-            <script src="assets/js/placeholder.js "></script>
+        <script src="assets/js/placeholder.js "></script>
         <![endif]-->
-
-</body>
-
-</html>
+        
+    </body>
+    
+    </html>
