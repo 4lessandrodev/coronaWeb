@@ -19,4 +19,5 @@ router.post('/salvar-pergunta-auxiliar', adminController.salvarPerguntaAuxiliar)
 router.put('/alterar-status', adminController.alterarStatusConsulta);
 
 
+
 module.exports = router;

@@ -26,7 +26,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 //SESSAO PARA CONTROLE DE LOGIN
 app.use(cookieSession({
   name: 'session',
-  keys: ['ASJDHAKG2132165DFSDF46540'],
+  keys: ['A5AKG21L5DFSDF46540'],
   resave: false,
   saveUninitialized: false,
   // Cookie Options

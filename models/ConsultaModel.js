@@ -102,6 +102,8 @@ class ConsultaModel {
         });
       }
       
+
+      
     }
     
     module.exports =  ConsultaModel;
