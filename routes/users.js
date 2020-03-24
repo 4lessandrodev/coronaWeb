@@ -27,5 +27,7 @@ router.get('/consulta/:id', consultaController.verConsulta);
 router.post('/salvar-resposta', usuarioController.salvarRespostas);
 
 //Acessar perfil - criada por Lucas para teste de renderização dinâmica
-router.get('/perfil', usuarioController.verPerfil)
+router.get('/perfil', usuarioController.verPerfil);
+
+
 module.exports = router;

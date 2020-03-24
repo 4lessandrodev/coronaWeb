@@ -3,13 +3,12 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
-const port = 3000;
-const hostname = 'localhost';
+var cookieSession = require('cookie-session')
 
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
-var adminRouter = require('./routes/admin')
+var adminRouter = require('./routes/admin');
 
 var app = express();
 
@@ -22,6 +21,18 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+
+//---------------------------------------------------
+//SESSAO PARA CONTROLE DE LOGIN
+app.use(cookieSession({
+  name: 'session',
+  keys: ['ASJDHAKG2132165DFSDF46540'],
+  resave: false,
+  saveUninitialized: false,
+  // Cookie Options
+  maxAge: 24 * 60 * 60 * 1000 // 24 hours
+}));
+//---------------------------------------------------
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
@@ -43,6 +54,5 @@ app.use(function(err, req, res, next) {
   res.render('error');
 });
 
-app.listen(port, hostname);
 
 module.exports = app;

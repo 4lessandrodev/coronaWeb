@@ -1,7 +1,6 @@
 const usuarioModel = require('./../models/UsuarioModel');
 const perfilModel = require('./../models/PerfilModel');
 const respostasModel = require('./../models/RespostasModel')
-
 const modelo = require('../arquivos_do_projeto/modelo.json');
 
 
@@ -26,9 +25,13 @@ const realizarLogin = (req, res, next) => {
     const usuario = new usuarioModel(req.body.telefone, req.body.senha);
     usuario.login(usuario).then(resposta => {
         if (resposta[0] !== null) {
-            res.send('Usuario logado');
+            res.send(resposta[0]);
+            //req.session.user = resposta;
+            //Login realizado com sucesso
+            //verPerfil(req, res, next);
         } else {
-            res.send('Não realizado login');
+            req.session.user = undefined;
+            res.render('login', {body:req.body, err:'Usuário ou senha inválido' });
         }
     });
 };
@@ -41,10 +44,14 @@ const salvarRespostas = (req, res, next) => {
     });
 };
 
-//teste de renderização do perfil - Lucas
+//conexão com BD - alessandro
 const verPerfil = (req, res, next) => {
-    res.render('perfil', { modelo })
-}
+    const usuario = new usuarioModel();
+    usuario.id = req.session.user.id;
+    usuario.visualizarPerfil(usuario).then(perfil => {
+        res.render('perfil', { perfil});
+    });
+};
 
 
 

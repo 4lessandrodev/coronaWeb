@@ -37,7 +37,7 @@ class UsuarioModel {
       });
     });   
   }
-
+  
   listarUsuarios(usuario) {
     return new Promise((resolve, reject) => {
       conect.query(`SELECT * FROM usuario`, (err, result) => {
@@ -49,10 +49,10 @@ class UsuarioModel {
       });
     });
   }
-
+  
   login(usuario) {
     return new Promise((resolve, reject) => {
-      conect.query(`SELECT * FROM usuario WHERE telefone = ? AND senha = ?`, [usuario.telefone, usuario.senha], (err, result) => {
+      conect.query(`SELECT user.telefone FROM usuario AS user WHERE telefone = ? AND senha = ?`, [usuario.telefone, usuario.senha], (err, result) => {
         if (err) {
           reject(err.message);
         } else {
@@ -61,7 +61,21 @@ class UsuarioModel {
       });
     });
   }
-
+  
+  visualizarPerfil(usuario) {
+    return new Promise((resolve, reject) => {
+      conect.query(`SELECT u.telefone, p.nome, p.idade, p.email, p.genero, p.endereco, p.cidade, p.estado, p.bairro, p.cep
+      FROM usuario AS u, perfil AS p
+      WHERE u.id = p.id_usuario AND u.id = ?`, [usuario._id], (err, result) => {
+        if (err) {
+          reject(err.message);
+        } else {
+          resolve(result);
+        }
+      });
+    });
+  }
+  
 }
 
 module.exports = UsuarioModel;
