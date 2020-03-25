@@ -4,9 +4,7 @@ const usuarioController = require('./../controllers/usuarioController');
 const consultaController = require('./../controllers/consultaController');
 
 /* GET users listing. */
-router.get('/', function(req, res, next) {
-    res.send('respond with a resource');
-});
+router.get('/login', usuarioController.carregarPaginaLogin);
 
 //Cadastrar um usuário 
 router.post('/cadastro', usuarioController.cadastrarUsuario);
@@ -27,5 +25,12 @@ router.get('/consulta/:id', consultaController.verConsulta);
 router.post('/salvar-resposta', usuarioController.salvarRespostas);
 
 //Acessar perfil - criada por Lucas para teste de renderização dinâmica
-router.get('/perfil', usuarioController.verPerfil)
+router.get('/perfil', usuarioController.verPerfil);
+
+//Visualizar formulário de consulta 
+router.get('/dashboard', usuarioController.carregarDashboard);
+
+//Usuario realizar o logout e encerrar a sessão 
+router.get('/sair', usuarioController.sair);
+
 module.exports = router;

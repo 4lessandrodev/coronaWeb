@@ -79,6 +79,17 @@ class SintomasModel {
     });
   }
 
+  listarSintomasParaFormularioDeConsulta(sintoma) {
+    return new Promise((resolve, reject) => {
+      conect.query(`SELECT s.id, s.descricao FROM sintomas AS s WHERE ativo = ?;`, [sintoma._ativo],(err, result) => {
+        if(err) {
+          reject(err.message);
+        } else {
+          resolve(result);
+        }
+      });
+    });
+  }
 
 }
 

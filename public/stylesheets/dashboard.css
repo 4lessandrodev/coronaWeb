@@ -92,12 +92,15 @@ main h2 {
     height: 50vh;
     width: 90%;
     margin: 0 auto;
+    text-align: center;
 }
 
 .form label {
     text-transform: uppercase;
     font-weight: 800;
     font-size: 1rem;
+    text-align: center;
+    padding: 0 1em;
 }
 
 .form button.btn {
@@ -105,7 +108,7 @@ main h2 {
     font-weight: 800;
     font-size: 1rem;
     padding: 12px 58px;
-    margin: 70px 10px;
+    margin: 50px 10px;
 }
 
 .btn-success {
@@ -118,7 +121,7 @@ main h2 {
 
 @media (max-width: 385px) {
     .form button.btn {
-        margin: 70px 0;
+        margin: 50px 0;
     }
 }
 
@@ -168,4 +171,33 @@ main h2 {
     border: none;
     cursor: pointer;
     padding: 12px 98px;
+}
+
+/*Perguntas ocultas*/
+.hidden{
+    display: none;
+}
+
+/*Icone da pergunta final*/
+.icone{
+    font-size: 5em;
+    text-align: center;
+    color: #63A69F;
+}
+#resultado{
+    text-align: center;
+}
+#resultado label{
+    padding-top: 5vh;
+    margin-top: 2vh;
+}
+.header-dashboard{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+}
+.header-btn-sair{
+position: absolute;
+right: 7vw;
 }

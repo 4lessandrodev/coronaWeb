@@ -21,4 +21,5 @@ router.put('/alterar-status', adminController.alterarStatusConsulta);
 //renderizar pagina
 router.get('/main', adminController.adminDashboard)
 
+
 module.exports = router;

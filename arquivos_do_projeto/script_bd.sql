@@ -93,8 +93,6 @@ DROP TABLE IF EXISTS `alessandrodev`.`consultas` ;
 CREATE TABLE IF NOT EXISTS `alessandrodev`.`consultas` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `data_hora` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `contato_alguem_corona` TINYINT(1) NOT NULL DEFAULT 0,
-  `viagem_internacional` TINYINT(1) NOT NULL DEFAULT 0,
   `id_usuario` INT NOT NULL,
   `id_status_consulta` INT NOT NULL DEFAULT 1,
   PRIMARY KEY (`id`),
