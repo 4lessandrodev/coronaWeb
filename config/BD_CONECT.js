@@ -8,8 +8,8 @@ const conect = mysql.createPool({
   database: 'alessandrodev',
   password: 'combatendocorona1190',
   waitForConnections: true,
-  connectionLimit: 10,
-  queueLimit: 3
+  connectionLimit: 15,
+  queueLimit: 0
 });
 module.exports = conect;
 
@@ -28,7 +28,7 @@ const conect = mysql.createPool({
   password: 'admin',
   waitForConnections: true,
   connectionLimit: 10,
-  queueLimit: 3
+  queueLimit: 0
 });
 
 module.exports = conect;
