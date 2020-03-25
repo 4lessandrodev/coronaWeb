@@ -3,32 +3,38 @@ const perguntasAuxiliares = require('./../models/PerguntasAuxiliaresModel');
 const Consulta = require('./../models/ConsultaModel');
 
 const salvarSintomas = (req, res, next) => {
-  const sintoma = new sintomasModel(req.body.descricao, req.body.grupo_risco);
-  sintoma.salvarSintomas(sintoma).then(resposta => {
-    res.send('Sintoma cadastrado');
-  });
+    const sintoma = new sintomasModel(req.body.descricao, req.body.grupo_risco);
+    sintoma.salvarSintomas(sintoma).then(resposta => {
+        res.send('Sintoma cadastrado');
+    });
 };
 
 const salvarPerguntaAuxiliar = (req, res, next) => {
-  const pergunta = new perguntasAuxiliares(req.body.descricao, req.body.id_sintoma, req.body.frequencia, req.body.gatilho_em_horas);
-  pergunta.salvarPerguntasAuxiliares(pergunta).then(resposta => {
-    res.send('Pergunda salva com sucesso');
-  });
+    const pergunta = new perguntasAuxiliares(req.body.descricao, req.body.id_sintoma, req.body.frequencia, req.body.gatilho_em_horas);
+    pergunta.salvarPerguntasAuxiliares(pergunta).then(resposta => {
+        res.send('Pergunda salva com sucesso');
+    });
 };
 
-const alterarStatusConsulta = (req, res, next)=>{
-  const consulta = new Consulta();
-  consulta.id = req.params.id;
-  consulta.alterarStatusDaConsulta(consulta).then(resposta => {
-    res.send(resposta);
-  });
+const alterarStatusConsulta = (req, res, next) => {
+    const consulta = new Consulta();
+    consulta.id = req.params.id;
+    consulta.alterarStatusDaConsulta(consulta).then(resposta => {
+        res.send(resposta);
+    });
 };
 
-const salvarPergunta = (req, res, next)=>{
-  const pergunta = new perguntasAuxiliares(req.body.descricao, req.body.id_sintoma, req.body.frequencia, req.body.gatilho_em_horas);
-  pergunta.salvarPerguntasAuxiliares(pergunta).then( resposta => {
-    res.send('Pergunda salva com sucesso');
-  });
+const salvarPergunta = (req, res, next) => {
+    const pergunta = new perguntasAuxiliares(req.body.descricao, req.body.id_sintoma, req.body.frequencia, req.body.gatilho_em_horas);
+    pergunta.salvarPerguntasAuxiliares(pergunta).then(resposta => {
+        res.send('Pergunda salva com sucesso');
+    });
 };
 
-module.exports = { salvarSintomas, salvarPerguntaAuxiliar, alterarStatusConsulta, salvarPergunta };
+//renderizar página
+
+const adminDashboard = (req, res, next) => {
+    res.render('adminDashboard')
+}
+
+module.exports = { salvarSintomas, salvarPerguntaAuxiliar, alterarStatusConsulta, salvarPergunta, adminDashboard };
