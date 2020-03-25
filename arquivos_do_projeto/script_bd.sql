@@ -5,21 +5,21 @@ SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0;
 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='TRADITIONAL,ALLOW_INVALID_DATES';
 
 -- -----------------------------------------------------
--- Schema alessandrodev
+-- Schema corona_bd
 -- -----------------------------------------------------
 
 -- -----------------------------------------------------
--- Schema alessandrodev
+-- Schema corona_bd
 -- -----------------------------------------------------
-CREATE SCHEMA IF NOT EXISTS `alessandrodev` DEFAULT CHARACTER SET utf8 ;
-USE `alessandrodev` ;
+CREATE SCHEMA IF NOT EXISTS `corona_bd` DEFAULT CHARACTER SET utf8 ;
+USE `corona_bd` ;
 
 -- -----------------------------------------------------
--- Table `alessandrodev`.`usuario`
+-- Table `corona_bd`.`usuario`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `alessandrodev`.`usuario` ;
+DROP TABLE IF EXISTS `corona_bd`.`usuario` ;
 
-CREATE TABLE IF NOT EXISTS `alessandrodev`.`usuario` (
+CREATE TABLE IF NOT EXISTS `corona_bd`.`usuario` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `telefone` VARCHAR(11) NOT NULL,
   `senha` VARCHAR(50) NOT NULL,
@@ -30,11 +30,11 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `alessandrodev`.`perfil`
+-- Table `corona_bd`.`perfil`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `alessandrodev`.`perfil` ;
+DROP TABLE IF EXISTS `corona_bd`.`perfil` ;
 
-CREATE TABLE IF NOT EXISTS `alessandrodev`.`perfil` (
+CREATE TABLE IF NOT EXISTS `corona_bd`.`perfil` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `nome` VARCHAR(50) NOT NULL,
   `idade` INT(2) NOT NULL,
@@ -52,18 +52,18 @@ CREATE TABLE IF NOT EXISTS `alessandrodev`.`perfil` (
   UNIQUE INDEX `email_UNIQUE` (`email` ASC),
   CONSTRAINT `fk_id_usuario_1`
     FOREIGN KEY (`id_usuario`)
-    REFERENCES `alessandrodev`.`usuario` (`id`)
+    REFERENCES `corona_bd`.`usuario` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `alessandrodev`.`sintomas`
+-- Table `corona_bd`.`sintomas`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `alessandrodev`.`sintomas` ;
+DROP TABLE IF EXISTS `corona_bd`.`sintomas` ;
 
-CREATE TABLE IF NOT EXISTS `alessandrodev`.`sintomas` (
+CREATE TABLE IF NOT EXISTS `corona_bd`.`sintomas` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `descricao` VARCHAR(45) NOT NULL,
   `grupo_risco` TINYINT(1) NOT NULL DEFAULT 0,
@@ -74,11 +74,11 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `alessandrodev`.`status_para_consultas`
+-- Table `corona_bd`.`status_para_consultas`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `alessandrodev`.`status_para_consultas` ;
+DROP TABLE IF EXISTS `corona_bd`.`status_para_consultas` ;
 
-CREATE TABLE IF NOT EXISTS `alessandrodev`.`status_para_consultas` (
+CREATE TABLE IF NOT EXISTS `corona_bd`.`status_para_consultas` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `descricao` VARCHAR(30) NOT NULL,
   PRIMARY KEY (`id`))
@@ -86,15 +86,13 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `alessandrodev`.`consultas`
+-- Table `corona_bd`.`consultas`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `alessandrodev`.`consultas` ;
+DROP TABLE IF EXISTS `corona_bd`.`consultas` ;
 
-CREATE TABLE IF NOT EXISTS `alessandrodev`.`consultas` (
+CREATE TABLE IF NOT EXISTS `corona_bd`.`consultas` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `data_hora` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `contato_alguem_corona` TINYINT(1) NOT NULL DEFAULT 0,
-  `viagem_internacional` TINYINT(1) NOT NULL DEFAULT 0,
   `id_usuario` INT NOT NULL,
   `id_status_consulta` INT NOT NULL DEFAULT 1,
   PRIMARY KEY (`id`),
@@ -102,23 +100,23 @@ CREATE TABLE IF NOT EXISTS `alessandrodev`.`consultas` (
   INDEX `fk_consultas_2_idx` (`id_status_consulta` ASC),
   CONSTRAINT `fk_consultas_1`
     FOREIGN KEY (`id_usuario`)
-    REFERENCES `alessandrodev`.`usuario` (`id`)
+    REFERENCES `corona_bd`.`usuario` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_consultas_2`
     FOREIGN KEY (`id_status_consulta`)
-    REFERENCES `alessandrodev`.`status_para_consultas` (`id`)
+    REFERENCES `corona_bd`.`status_para_consultas` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `alessandrodev`.`consulta_para_sintomas`
+-- Table `corona_bd`.`consulta_para_sintomas`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `alessandrodev`.`consulta_para_sintomas` ;
+DROP TABLE IF EXISTS `corona_bd`.`consulta_para_sintomas` ;
 
-CREATE TABLE IF NOT EXISTS `alessandrodev`.`consulta_para_sintomas` (
+CREATE TABLE IF NOT EXISTS `corona_bd`.`consulta_para_sintomas` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `id_consulta` INT NOT NULL,
   `id_sintoma` INT NOT NULL,
@@ -127,23 +125,23 @@ CREATE TABLE IF NOT EXISTS `alessandrodev`.`consulta_para_sintomas` (
   INDEX `fk_consulta_para_sintomas_2_idx` (`id_consulta` ASC),
   CONSTRAINT `fk_consulta_para_sintomas_1`
     FOREIGN KEY (`id_sintoma`)
-    REFERENCES `alessandrodev`.`sintomas` (`id`)
+    REFERENCES `corona_bd`.`sintomas` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_consulta_para_sintomas_2`
     FOREIGN KEY (`id_consulta`)
-    REFERENCES `alessandrodev`.`consultas` (`id`)
+    REFERENCES `corona_bd`.`consultas` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `alessandrodev`.`perguntas_auxiliares`
+-- Table `corona_bd`.`perguntas_auxiliares`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `alessandrodev`.`perguntas_auxiliares` ;
+DROP TABLE IF EXISTS `corona_bd`.`perguntas_auxiliares` ;
 
-CREATE TABLE IF NOT EXISTS `alessandrodev`.`perguntas_auxiliares` (
+CREATE TABLE IF NOT EXISTS `corona_bd`.`perguntas_auxiliares` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `descricao` VARCHAR(200) NOT NULL,
   `id_sintoma` INT NOT NULL,
@@ -153,18 +151,18 @@ CREATE TABLE IF NOT EXISTS `alessandrodev`.`perguntas_auxiliares` (
   INDEX `fk_perguntas_auxiliares_1_idx` (`id_sintoma` ASC),
   CONSTRAINT `fk_perguntas_auxiliares_1`
     FOREIGN KEY (`id_sintoma`)
-    REFERENCES `alessandrodev`.`sintomas` (`id`)
+    REFERENCES `corona_bd`.`sintomas` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `alessandrodev`.`observacoes_para_consulta`
+-- Table `corona_bd`.`observacoes_para_consulta`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `alessandrodev`.`observacoes_para_consulta` ;
+DROP TABLE IF EXISTS `corona_bd`.`observacoes_para_consulta` ;
 
-CREATE TABLE IF NOT EXISTS `alessandrodev`.`observacoes_para_consulta` (
+CREATE TABLE IF NOT EXISTS `corona_bd`.`observacoes_para_consulta` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `descricao` VARCHAR(250) NOT NULL,
   `id_consulta` INT NOT NULL,
@@ -172,18 +170,18 @@ CREATE TABLE IF NOT EXISTS `alessandrodev`.`observacoes_para_consulta` (
   INDEX `fk_observacoes_para_consulta_1_idx` (`id_consulta` ASC),
   CONSTRAINT `fk_observacoes_para_consulta_1`
     FOREIGN KEY (`id_consulta`)
-    REFERENCES `alessandrodev`.`consultas` (`id`)
+    REFERENCES `corona_bd`.`consultas` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `alessandrodev`.`respostas`
+-- Table `corona_bd`.`respostas`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `alessandrodev`.`respostas` ;
+DROP TABLE IF EXISTS `corona_bd`.`respostas` ;
 
-CREATE TABLE IF NOT EXISTS `alessandrodev`.`respostas` (
+CREATE TABLE IF NOT EXISTS `corona_bd`.`respostas` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `resposta` TINYINT(1) NOT NULL DEFAULT 0,
   `id_usuario` INT NOT NULL,
@@ -194,12 +192,12 @@ CREATE TABLE IF NOT EXISTS `alessandrodev`.`respostas` (
   INDEX `fk_respostas_2_idx` (`id_pergunta` ASC),
   CONSTRAINT `fk_respostas_1`
     FOREIGN KEY (`id_usuario`)
-    REFERENCES `alessandrodev`.`usuario` (`id`)
+    REFERENCES `corona_bd`.`usuario` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_respostas_2`
     FOREIGN KEY (`id_pergunta`)
-    REFERENCES `alessandrodev`.`perguntas_auxiliares` (`id`)
+    REFERENCES `corona_bd`.`perguntas_auxiliares` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;

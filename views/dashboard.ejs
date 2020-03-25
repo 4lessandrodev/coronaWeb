@@ -7,45 +7,69 @@
     <title>Dashboard</title>
     <meta name='viewport' content='width=device-width, initial-scale=1'>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <script src="https://kit.fontawesome.com/8701d44bdc.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="/stylesheets/dashboard.css">
 </head>
 
 <body>
     <div class="dashboard-page">
         <header>
-            <nav class="container-fluid">
-                <h1><%=user.nome%></h1>
-                <span class="show-profile-page"><a href="/users/perfil">Acessar perfil</a></span>
+            <nav class="container-fluid header-dashboard">
+                <div>
+                    <h1><%=user.nome%></h1>
+                    <span class="show-profile-page"><a href="/users/perfil">Acessar perfil</a></span>
+                </div>
+                <div class="header-btn-sair">
+                    <a href="/users/sair"><span><i class="fas fa-sign-out-alt"></i></span></a>
+                </div>
             </nav>
         </header>
         <main>
             <section class="atendimentos">
                 <h2>Seus atendimentos</h2>
                 <ol>
-                    <% for(let i = 0; i < consultas; i++){ %>
-                        <li><%=i++%>º Atendimento
-                            <span><%=consultas[i].data_hora.getDate()%>/<%=consultas[i].data_hora.getMonth()%>/<%=consultas[i].data_hora.getFullYear()%></span>
+                    <% for(let consulta of consultas){ %>
+                        <li>Atendimento N° <%=consulta.id%>
+                            <span><%=consulta.data_hora.getDate()%>/<%=consulta.data_hora.getMonth()%>/<%=consulta.data_hora.getFullYear()%></span>
                         </li>
-                    <%}%>
+                        <%}%>
                     </ol>
                 </section>
                 <section>
                     <h2>Questionário</h2>
                     <form class="form" action="">
-                        <% for(let sintoma of sintomas){ %>
-                        <label for="pergunta1">Você teve <%=sintoma.descricao%>?</label>
-                        <div>
-                            <button class="btn btn-success">Sim</button>
-                            <button class="btn btn-danger">Não</button>
+                        <div class="pergunta">
+                            <label for="pergunta1">Clique em iniciar para começar uma nova consulta</label>
+                            <div>
+                                <button class="btn btn-success button_sim">Iniciar</button>
+                            </div>
                         </div>
-                        <%}%>
-                    </form>
-                </section>
-            </main>
-        </div>
-        <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
-        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
-        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
-    </body>
-    
-    </html>
+                        <% for(let sintoma of sintomas){ %>
+                            <div class="hidden pergunta">
+                                <label for="pergunta">Você teve <%=sintoma.descricao%>?</label>
+                                <div>
+                                    <button class="btn btn-success button_sim" value="<%=sintoma.id%>">Sim</button>
+                                    <button class="btn btn-danger button_nao">Não</button>
+                                </div>
+                            </div>
+                            <%}%>
+                            <div class="hidden pergunta" id="resultado">
+                                <label for="pergunta">ótimo, vamos processar seu resultado</label>
+                                <div class="icone">
+                                    <span><i class="fas fa-hand-holding-medical"></i></span>
+                                </div>
+                                <div>
+                                    <button class="btn btn-success button_resultado" id="enviar-consulta">Ver Resultado</button>
+                                </div>
+                            </div>
+                        </form>
+                    </section>
+                </main>
+            </div>
+            <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+            <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+            <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+            <script src="/js/formulario.js"></script>
+        </body>
+        
+        </html>

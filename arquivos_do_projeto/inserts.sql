@@ -15,6 +15,8 @@ INSERT INTO sintomas(descricao, grupo_risco, pergunta_mae, ativo) VALUES('Press�
 INSERT INTO sintomas(descricao, grupo_risco, pergunta_mae, ativo) VALUES('Problemas Cardiacos', '1', '0', '1');
 INSERT INTO sintomas(descricao, grupo_risco, pergunta_mae, ativo) VALUES('Cancer', '1', '0', '1');
 INSERT INTO sintomas(descricao, grupo_risco, pergunta_mae, ativo) VALUES('Doença Respiratória', '1', '0', '1');
+INSERT INTO sintomas(descricao, grupo_risco, pergunta_mae, ativo) VALUES('Viagem Internacional recentemente', '1', '0', '1');
+INSERT INTO sintomas(descricao, grupo_risco, pergunta_mae, ativo) VALUES('Contato com alguém diagnosticado com COVIT-19', '1', '0', '1');
 
 INSERT INTO status_para_consultas(descricao) VALUES('Aguardando atendimento');
 INSERT INTO status_para_consultas(descricao) VALUES('Atendido');

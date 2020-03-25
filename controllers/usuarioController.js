@@ -85,6 +85,7 @@ const carregarDashboard = (req, res, next) => {
         consulta.listarResumoConsultaDoUsuario(usuario).then(consultas => {
             usuario.visualizarPerfil(usuario).then(user => {
                 sintoma.listarSintomasParaFormularioDeConsulta(sintoma).then(sintomas => {
+                    console.log(consultas);
                     res.render('dashboard', { consultas, user: user[0], sintomas });
                 }).catch(err => {
                     res.send(err.message);

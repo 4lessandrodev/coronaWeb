@@ -14,8 +14,8 @@ const cadastrarUsuario = (req, res, next) => {
   });
 };
 
-const salvarConsultaParaSintomas = (req, res, next, id_consulta, ids_sintomas) => {
-  let ids = ids_sintomas.split(',');
+const salvarConsultaParaSintomas = (req, res, next, id_consulta) => {
+  let ids = req.body;
   for (let id_sintoma of ids) {
     const consultaParaSintomas = new ConsultaParaSintomas(id_consulta, id_sintoma);
     consultaParaSintomas.salvarConsultaParaSintomas(consultaParaSintomas).then(resposta => { });
@@ -24,10 +24,10 @@ const salvarConsultaParaSintomas = (req, res, next, id_consulta, ids_sintomas) =
 };
 
 const salvarConsultas = (req, res, next) => {
-  const consulta = new Consulta(req.body.contato_alguem_corona, req.body.viagem_internacional,
-    req.body.id_usuario, req.body.id_status_consulta);
+  let id_usuario = req.session.user.id;
+  const consulta = new Consulta(id_usuario, req.body.id_status_consulta);
   consulta.salvarConsulta(consulta).then(resposta => {
-    salvarConsultaParaSintomas(req, res, next, resposta.insertId, req.body.ids_sintomas);
+    salvarConsultaParaSintomas(req, res, next, resposta.insertId);
   });
 };
 
