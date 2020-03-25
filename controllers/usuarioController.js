@@ -10,7 +10,7 @@ const SintomaModel = require('./../models/SintomasModel');
 //RENDERIZAR A PAGINA DE LOGIN
 const carregarPaginaLogin = (req, res, next) => {
     if (req.session.user == undefined) {
-        res.render('login', { err: null,  body: req.body });
+        res.render('login', { err: null, body: req.body });
     } else {
         res.redirect('dashboard');
     }
@@ -52,7 +52,7 @@ const realizarLogin = (req, res, next) => {
             }
         });
     }
-};  
+};
 //--------------------------------------------------------------------------------------------------------------
 //SALVAR RESPOSTAS ALATÓRIAS/AUXILIARES DO USUÁRIO
 const salvarRespostas = (req, res, next) => {
@@ -86,7 +86,7 @@ const carregarDashboard = (req, res, next) => {
             usuario.visualizarPerfil(usuario).then(user => {
                 sintoma.listarSintomasParaFormularioDeConsulta(sintoma).then(sintomas => {
                     console.log(consultas);
-                    res.render('dashboard', { consultas, user: user[0], sintomas });
+                    res.render('userDashboard', { consultas, user: user[0], sintomas }); //alterado de 'dashboard' para 'userDashboard'
                 }).catch(err => {
                     res.send(err.message);
                 });
@@ -103,7 +103,7 @@ const carregarDashboard = (req, res, next) => {
 //--------------------------------------------------------------------------------------------------------------
 //USUARIO SAIR E ENCERRAR A SESSÃO 
 const sair = (req, res, next) => {
-  req.session.user = undefined;
+    req.session.user = undefined;
     res.redirect('/login');
 };
 //--------------------------------------------------------------------------------------------------------------
