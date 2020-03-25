@@ -47,7 +47,7 @@ const verConsulta = (req, res, next) => {
   const consulta = new Consulta();
   const usuario = new Usuario();
   const sintoma = new Sintomas();
-  usuario.id = req.body.id;
+  usuario.id = req.session.user.id;
   consulta.id = req.params.id;
   consulta.verConsultaEspecificaDoUsuario(usuario, consulta).then(resposta => {
     consultaSelecionada = resposta[0];

@@ -55,9 +55,9 @@ class SintomasModel {
   
   listarSintomasDeUmaConsulta(consulta) {
     return new Promise((resolve, reject) => {
-      conect.query(`SELECT sin.id, sin.descricao 
+      conect.query(`SELECT sin.descricao 
       FROM sintomas AS sin, consultas AS con, consulta_para_sintomas AS con_sin 
-      WHERE con_sin.id_consulta = con.id AND sin.id = con_sin.id_sintoma AND con.id = ? AND ativo = ?`, [consulta._id, consulta._ativo], (err, result) => {
+      WHERE con_sin.id_consulta = con.id AND sin.id = con_sin.id_sintoma AND con.id = ?`, [consulta._id, consulta._ativo], (err, result) => {
         if (err) {
           reject(err.message);
         } else {
