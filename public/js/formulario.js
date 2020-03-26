@@ -19,6 +19,7 @@ const SALVAR_RESPOSTA = (e) => {
     div.classList.toggle('hidden');
     PERGUNTAS[indice + 1].classList.toggle('hidden');
     (e.target.textContent.toUpperCase() == 'SIM') ? SINTOMAS.push(e.target.value) : '';
+    console.log(SINTOMAS);
   }
 };
 

@@ -1,6 +1,6 @@
 // get the client
 const mysql = require('mysql2');
-/*
+
 // Create the connection pool. The pool-specific settings are the defaults
 const conect = mysql.createPool({
   host: 'mysql18-farm76.kinghost.net',
@@ -12,13 +12,13 @@ const conect = mysql.createPool({
   queueLimit: 0
 });
 module.exports = conect;
-*/
+
 
 
 
 //LOCAL 
 // get the client
-
+/*
 // Create the connection pool. The pool-specific settings are the defaults
 const conect = mysql.createPool({
   host: 'localhost',
@@ -31,3 +31,4 @@ const conect = mysql.createPool({
 });
 
 module.exports = conect;
+*/

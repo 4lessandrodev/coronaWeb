@@ -23,10 +23,8 @@
     </header>
     <main>
       <h2 id="h-dados"><%= consultaSelecionada.status_consulta %></h2>
-      <form class="dados" action="">
-        <div class="form-group ">
+      <form class="dados">
           <label>Sintomas:</label>
-        </div>
         <div class="form-group ">
           <% consultaSelecionada.sintomas.forEach(sintoma => { %>
             <label class="sintoma">
