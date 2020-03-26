@@ -34,7 +34,7 @@ const ENVIAR_CONSULTA = (e) => {
       method: 'POST',
       body: ids_sintomas
     })
-    .then(response => {
+    .then(response =>{
       location.reload();
     });
   }
