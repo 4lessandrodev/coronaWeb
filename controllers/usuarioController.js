@@ -48,7 +48,11 @@ const realizarLogin = (req, res, next) => {
                 res.render('login', { body: req.body, err: 'Usuário ou senha inválido' });
             } else {
                 req.session.user = user[0];
-                res.redirect('dashboard');
+                if (user[0].admin == 1) {
+                    res.redirect('/admin/dashboard');   
+                } else {
+                    res.redirect('dashboard');
+                }
             }
         });
     }

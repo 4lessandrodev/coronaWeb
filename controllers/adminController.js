@@ -31,10 +31,40 @@ const salvarPergunta = (req, res, next) => {
     });
 };
 
-//renderizar página
+const quantidadeDeAtendimentos = (req, res, next) => {
+    const consulta = new Consulta();
+    consulta.contarAtendimentos().then(qtd => {
+        return (qtd[0] > 0) ? qtd[0] : 0;
+    });
+};
 
+//renderizar página
 const adminDashboard = (req, res, next) => {
-    res.render('adminDashboard')
-}
+    let user = req.session.user;
+    (user.admin == 0) ? res.redirect('/users/dashboard') : '';
+    const consulta = new Consulta();
+    consulta.contarAtendimentos().then(qtd => {
+        let qtdAtendimentos = (qtd[0].qtd_atendimentos > 0) ? qtd[0].qtd_atendimentos : 0;
+        consulta.suspeitosDeCorona().then(suspeitos => {
+
+            let listaSuspeitos = suspeitos.filter((item) => {
+                return item.sintomas >= 3;
+            });
+            
+            consulta.consultasPorBairros().then(porRegiao => {
+                
+                    res.render('adminDashboard', { qtdAtendimentos, qtdSuspeitos: listaSuspeitos.length, porRegiao }); 
+                
+            }).catch(err => {
+                res.send(err.message);
+            });
+        }).catch(err => {
+            res.send(err.message);
+        });
+    }).catch(err => {
+        res.send(err.message);
+    });
+    
+};
 
 module.exports = { salvarSintomas, salvarPerguntaAuxiliar, alterarStatusConsulta, salvarPergunta, adminDashboard };

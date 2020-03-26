@@ -52,7 +52,7 @@ class UsuarioModel {
   
   login(usuario) {
     return new Promise((resolve, reject) => {
-      conect.query(`SELECT user.id, user.telefone FROM usuario AS user WHERE telefone = ? AND senha = ?`, [usuario.telefone, usuario.senha], (err, result) => {
+      conect.query(`SELECT user.id, user.telefone, user.admin FROM usuario AS user WHERE telefone = ? AND senha = ?`, [usuario.telefone, usuario.senha], (err, result) => {
         if (err) {
           reject(err.message);
         } else {

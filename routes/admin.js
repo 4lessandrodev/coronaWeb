@@ -19,7 +19,7 @@ router.post('/salvar-pergunta-auxiliar', adminController.salvarPerguntaAuxiliar)
 router.put('/alterar-status', adminController.alterarStatusConsulta);
 
 //renderizar pagina
-router.get('/dashboard', adminController.adminDashboard)
+router.get('/dashboard', adminController.adminDashboard);
 
 
 module.exports = router;

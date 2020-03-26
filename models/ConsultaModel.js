@@ -81,6 +81,41 @@ class ConsultaModel {
     });
   }
   
+  contarAtendimentos() {
+    return new Promise((resolve, reject) => {
+      conect.query(`SELECT COUNT(c.id) AS qtd_atendimentos FROM consultas AS c`, (err, result) => {
+        if (err) {
+          reject(err.message);
+        } else {
+          resolve(result);
+        }
+      });
+    });
+  }
+  
+  suspeitosDeCorona() {
+    return new Promise((resolve, reject) => {
+      conect.query(`SELECT COUNT(cps.id_consulta) AS sintomas FROM consulta_para_sintomas AS cps WHERE cps.id_sintoma IN('2','6','8','10','18','19') GROUP BY cps.id_consulta`, (err, result) => {
+        if (err) {
+          reject(err.message);
+        } else {
+          resolve(result);
+        }
+      });
+    });
+  }
+  
+  consultasPorBairros() {
+    return new Promise((resolve, reject) => {
+      conect.query(`SELECT perfil.bairro, COUNT(perfil.id_usuario) AS consultas_usuario FROM consultas, perfil WHERE perfil.id_usuario = consultas.id_usuario AND consultas.id IN(SELECT cps.id_consulta AS sintomas FROM consulta_para_sintomas AS cps WHERE cps.id_sintoma IN('2','6','8','10','18','19') GROUP BY cps.id_consulta) ORDER BY consultas_usuario`, (err, result) => {
+        if (err) {
+          reject(err.message);
+        } else {
+          resolve(result);
+        }
+      });
+    });
+  }
   
   
 }
