@@ -35,7 +35,7 @@
                     <% for(let consulta of consultas){ %>
                         <a href="/users/consulta/<%=consulta.id%> ">
                             <li>Atendimento
-                                <span><%=consulta.data_hora.getDate()%>/<%=consulta.data_hora.getMonth()%>/<%=consulta.data_hora.getFullYear()%></span>
+                                <span><%=consulta.data_hora.getDate()%>/<%=consulta.data_hora.getMonth()+1%>/<%=consulta.data_hora.getFullYear()%></span>
                             </li>
                         </a>
                         <%}%>
