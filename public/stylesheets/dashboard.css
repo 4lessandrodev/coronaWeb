@@ -71,6 +71,14 @@ main h2 {
     display: none;
 }
 
+.atendimentos ol a {
+    text-decoration: none;
+}
+
+.atendimentos ol a:hover {
+    opacity: 0.7;
+}
+
 .atendimentos ol li {
     background-color: #F2798F;
     padding: 38px 15px;
@@ -173,31 +181,39 @@ main h2 {
     padding: 12px 98px;
 }
 
+
 /*Perguntas ocultas*/
-.hidden{
+
+.hidden {
     display: none;
 }
 
+
 /*Icone da pergunta final*/
-.icone{
+
+.icone {
     font-size: 5em;
     text-align: center;
     color: #63A69F;
 }
-#resultado{
+
+#resultado {
     text-align: center;
 }
-#resultado label{
+
+#resultado label {
     padding-top: 5vh;
     margin-top: 2vh;
 }
-.header-dashboard{
+
+.header-dashboard {
     display: flex;
     flex-direction: column;
     align-items: center;
     position: relative;
 }
-.header-btn-sair{
-position: absolute;
-right: 7vw;
+
+.header-btn-sair {
+    position: absolute;
+    right: 7vw;
 }

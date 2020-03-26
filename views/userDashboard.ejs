@@ -18,7 +18,9 @@
         <header>
             <nav class="container-fluid header-dashboard">
                 <div>
-                    <h1><%=user.nome%></h1>
+                    <h1>
+                        <%=user.nome%>
+                    </h1>
                     <span class="show-profile-page"><a href="/users/perfil">Acessar perfil</a></span>
                 </div>
                 <div class="header-btn-sair">
@@ -32,7 +34,13 @@
                 <ol>
                     <% for(let consulta of consultas){ %>
                         <a href="/users/consulta/<%=consulta.id%> ">
-                            <li><p>Atendimento</p>
+                            <li>Atendimento
+                                <span><%=consulta.data_hora.getDate()%>/<%=consulta.data_hora.getMonth()%>/<%=consulta.data_hora.getFullYear()%></span>
+                            </li>
+                        </a>
+                        <a href="/users/consulta/<%=consulta.id%> data-toggle=" modal"
+                            data-target="#atendimento<%=consulta.id%>">
+                            <li>Atendimento
                                 <span><%=consulta.data_hora.getDate()%>/<%=consulta.data_hora.getMonth()%>/<%=consulta.data_hora.getFullYear()%></span>
                             </li>
                         </a>

@@ -4,8 +4,10 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="/stylesheets/dashboard.css">
   <title>Meu Perfil</title>
+   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+     integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+     <link rel="stylesheet" href="/stylesheets/consultaSelecionada.css">
   <link rel="shortcut icon" href="/images/icone.png" type="image/x-icon">
 </head>
 <!-- rota para acessar essa view:
@@ -23,7 +25,7 @@
       <h2 id="h-dados"><%= consultaSelecionada.status_consulta %></h2>
       <form class="dados" action="">
         <div class="form-group ">
-          <label>Sintomas</label>
+          <label>Sintomas:</label>
         </div>
         <div class="form-group ">
           <% consultaSelecionada.sintomas.forEach(sintoma => { %>
@@ -31,7 +33,9 @@
               <%=sintoma.descricao%>
             </label>
             <% }); %>
-            <p id="resultado">De acordo com os sintomas informados aconselhamos que você fique em casa e aguarde retorno de um profissional de saúde</p>
+            <div class="alert alert-warning">
+              <p id="resultado">De acordo com os sintomas informados aconselhamos que você fique em casa e aguarde retorno de um profissional de saúde</p>
+            </div>
           </div>
           <div class="form-group ">
             <button type="button" onclick="location.href='/users/dashboard'">Voltar</button>

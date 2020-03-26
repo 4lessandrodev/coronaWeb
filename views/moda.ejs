@@ -1,0 +1,46 @@
+                        <!-- Modal -->
+                        <div class="modal fade" id="atendimento<%=consulta.id%>" tabindex="-1" role="dialog"
+                          aria-labelledby="modalLabel" aria-hidden="true">
+                          <div class="modal-dialog modal-dialog-centered">
+                            <div class="modal-content">
+                              <div class="modal-header">
+                                <h5 class="modal-title vw-100" id="modalLabel">
+                                  Atendimento
+                                  <span><%=consulta.data_hora.getDate()%>/<%=consulta.data_hora.getMonth()%>/<%=consulta.data_hora.getFullYear()%></span>
+                                  <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
+                                    <span aria-hidden="true">&times;</span>
+                                  </button>
+                                </h5>
+                              </div>
+                              <div class="modal-body">
+                                <div class="table-responsive">
+                                  <table class="table-striped table-hover">
+                                    <thead>
+                                      <tr>
+                                        <th>Sintoma</th>
+                                        <th>Resposta</th>
+                                      </tr>
+                                    </thead>
+                                    <% for(let sintoma of sintomas){ %>
+                                      <tr>
+                                        <td>
+                                          <%=sintoma.descricao %>
+                                        </td>
+                                        <td>
+                                          <% if(consultas.sintomas.indexOf(sintoma.descricao) != -1){ %>
+                                            <span>Sim</span>
+                                            <% } else { %>
+                                              <span>Não</span>
+                                              <% } %>
+                                            </td>
+                                          </tr>
+                                          <%}%>
+                                        </table>
+                                      </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                      <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>

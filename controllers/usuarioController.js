@@ -10,9 +10,9 @@ const SintomaModel = require('./../models/SintomasModel');
 //RENDERIZAR A PAGINA DE LOGIN
 const carregarPaginaLogin = (req, res, next) => {
     if (req.session.user == undefined) {
-        res.render('login', { err: null,  body: req.body });
+        res.render('login', { err: null, body: req.body });
     } else {
-        res.redirect('userDashboard');
+        res.redirect('dashboard');
     }
 };
 //--------------------------------------------------------------------------------------------------------------
@@ -31,7 +31,7 @@ const cadastradoDePerfil = (req, res, next, id_usuario) => {
     const perfil = new PerfilModel(req.body.nome, req.body.email, req.body.idade, req.body.genero, id_usuario, endereco, req.body.bairro, req.body.cidade, req.body.estado, req.body.cep, req.body.ibge);
     perfil.cep = req.body.cep.replace('-', '');
     perfil.salvarPerfil(perfil).then(resposta => {
-        res.redirect('userDashboard');
+        res.redirect('dashboard');
     });
 };
 
@@ -48,11 +48,11 @@ const realizarLogin = (req, res, next) => {
                 res.render('login', { body: req.body, err: 'Usuário ou senha inválido' });
             } else {
                 req.session.user = user[0];
-                res.redirect('userDashboard');
+                res.redirect('dashboard');
             }
         });
     }
-};  
+};
 //--------------------------------------------------------------------------------------------------------------
 //SALVAR RESPOSTAS ALATÓRIAS/AUXILIARES DO USUÁRIO
 const salvarRespostas = (req, res, next) => {
@@ -85,7 +85,7 @@ const carregarDashboard = (req, res, next) => {
         consulta.listarResumoConsultaDoUsuario(usuario).then(consultas => {
             usuario.visualizarPerfil(usuario).then(user => {
                 sintoma.listarSintomasParaFormularioDeConsulta(sintoma).then(sintomas => {
-                    res.render('userDashboard', { consultas, user: user[0], sintomas });
+                    res.render('userDashboard', { consultas, user: user[0], sintomas }); //alterado de 'dashboard' para 'userDashboard'
                 }).catch(err => {
                     res.send(err.message);
                 });
@@ -102,7 +102,7 @@ const carregarDashboard = (req, res, next) => {
 //--------------------------------------------------------------------------------------------------------------
 //USUARIO SAIR E ENCERRAR A SESSÃO 
 const sair = (req, res, next) => {
-  req.session.user = undefined;
+    req.session.user = undefined;
     res.redirect('/login');
 };
 //--------------------------------------------------------------------------------------------------------------
