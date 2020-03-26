@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="/stylesheets/dashboard.css">
+  <title>Meu Perfil</title>
+  <link rel="shortcut icon" href="/images/icone.png" type="image/x-icon">
+</head>
+<!-- rota para acessar essa view:
+  http://localhost:21165/users/consulta/:id -->
+  
+  <body>
+    <header>
+      <nav class="container-fluid">
+        <h1>
+          Consulta
+        </h1>
+      </nav>
+    </header>
+    <main>
+      <h2 id="h-dados"><%= consultaSelecionada.status_consulta %></h2>
+      <form class="dados" action="">
+        <div class="form-group ">
+          <label>Sintomas</label>
+        </div>
+        <div class="form-group ">
+          <% consultaSelecionada.sintomas.forEach(sintoma => { %>
+            <label class="sintoma">
+              <%=sintoma.descricao%>
+            </label>
+            <% }); %>
+            <p id="resultado">De acordo com os sintomas informados aconselhamos que você fique em casa e aguarde retorno de um profissional de saúde</p>
+          </div>
+          <div class="form-group ">
+            <button type="button" onclick="location.href='/users/dashboard'">Voltar</button>
+          </div>
+        </form>
+      </main>
+      <script src="/js/resultado.js"></script>
+    </body>
+    
+    </html>

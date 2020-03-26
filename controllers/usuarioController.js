@@ -12,7 +12,7 @@ const carregarPaginaLogin = (req, res, next) => {
     if (req.session.user == undefined) {
         res.render('login', { err: null,  body: req.body });
     } else {
-        res.redirect('dashboard');
+        res.redirect('userDashboard');
     }
 };
 //--------------------------------------------------------------------------------------------------------------
@@ -31,7 +31,7 @@ const cadastradoDePerfil = (req, res, next, id_usuario) => {
     const perfil = new PerfilModel(req.body.nome, req.body.email, req.body.idade, req.body.genero, id_usuario, endereco, req.body.bairro, req.body.cidade, req.body.estado, req.body.cep, req.body.ibge);
     perfil.cep = req.body.cep.replace('-', '');
     perfil.salvarPerfil(perfil).then(resposta => {
-        res.redirect('dashboard');
+        res.redirect('userDashboard');
     });
 };
 
@@ -48,7 +48,7 @@ const realizarLogin = (req, res, next) => {
                 res.render('login', { body: req.body, err: 'Usuário ou senha inválido' });
             } else {
                 req.session.user = user[0];
-                res.redirect('dashboard');
+                res.redirect('userDashboard');
             }
         });
     }
@@ -85,8 +85,7 @@ const carregarDashboard = (req, res, next) => {
         consulta.listarResumoConsultaDoUsuario(usuario).then(consultas => {
             usuario.visualizarPerfil(usuario).then(user => {
                 sintoma.listarSintomasParaFormularioDeConsulta(sintoma).then(sintomas => {
-                    console.log(consultas);
-                    res.render('dashboard', { consultas, user: user[0], sintomas });
+                    res.render('userDashboard', { consultas, user: user[0], sintomas });
                 }).catch(err => {
                     res.send(err.message);
                 });

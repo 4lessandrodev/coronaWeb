@@ -53,7 +53,7 @@ const verConsulta = (req, res, next) => {
     consultaSelecionada = resposta[0];
     sintoma.listarSintomasDeUmaConsulta(consulta).then(sintomas => {
       consultaSelecionada.sintomas = sintomas;
-      res.send(consultaSelecionada);
+      res.render('consultaSelecionada', { consultaSelecionada });
     });
   });
 };

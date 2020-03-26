@@ -10,6 +10,7 @@
     <script src="https://kit.fontawesome.com/8701d44bdc.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="/stylesheets/dashboard.css">
     <link rel="shortcut icon" href="/images/icone.png" type="image/x-icon">
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 </head>
 
 <body>
@@ -30,9 +31,11 @@
                 <h2>Seus atendimentos</h2>
                 <ol>
                     <% for(let consulta of consultas){ %>
-                        <li>Atendimento N° <%=consulta.id%>
-                            <span><%=consulta.data_hora.getDate()%>/<%=consulta.data_hora.getMonth()%>/<%=consulta.data_hora.getFullYear()%></span>
-                        </li>
+                        <a href="/users/consulta/<%=consulta.id%> ">
+                            <li><p>Atendimento</p>
+                                <span><%=consulta.data_hora.getDate()%>/<%=consulta.data_hora.getMonth()%>/<%=consulta.data_hora.getFullYear()%></span>
+                            </li>
+                        </a>
                         <%}%>
                     </ol>
                 </section>
