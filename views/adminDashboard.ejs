@@ -8,48 +8,61 @@
     <meta name='viewport' content='width=device-width, initial-scale=1'>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <link rel='stylesheet' type='text/css' media='screen' href='/stylesheets/admin.css'>
+    <link rel="stylesheet" href="/stylesheets/animations.css">
     <script src="https://kit.fontawesome.com/c01b4bce71.js" crossorigin="anonymous"></script>
 </head>
 <!-- Rota: http://localhost:3000/admin/main -->
 
 <body>
     <main>
-        <div class="sidebar">
-            <a href="">
-                <div class="sideItem">
+        <div class="sidebar" id="sidebar">
+
+            <div class="sideItem">
+                <a class="button active" onclick="showDashboard()">
+                    <i class="fas fa-home"></i>
+                    <span>
+                    Dashboard
+                </span>
+                </a>
+            </div>
+
+            <div class="sideItem">
+                <a class="button" onclick="buscarCasosPorBairro()">
                     <i class="fas fa-search"></i>
                     <span>
                     Buscar casos por bairro
                 </span>
-                </div>
-            </a>
-            <a href="">
-                <div class="sideItem">
+                </a>
+            </div>
+
+            <div class="sideItem">
+                <a class="button" onclick="buscarCasosPorCep()">
                     <i class="fas fa-search"></i>
                     <span>
                     Buscar casos por CEP
                 </span>
-                </div>
-            </a>
-            <a href="">
-                <div class="sideItem">
+                </a>
+            </div>
+            <div class="sideItem">
+                <a class="button">
                     <i class="fas fa-map-marker-alt"></i>
                     <span>
                     Vizualizar micro regiões
                 </span>
-                </div>
-            </a>
-            <a href="">
-                <div class="sideItem">
+                </a>
+            </div>
+            <div class="sideItem">
+                <a class="button">
                     <i class="fas fa-stethoscope"></i>
                     <span>
                     Respostas por sintoma
                 </span>
-                </div>
-            </a>
+                </a>
+            </div>
+
 
         </div>
-        <div class="board">
+        <div class="board fadeIn" id="dashboard">
             <div class="row">
                 <div class="boardItem">
                     <strong>
@@ -86,11 +99,78 @@
             </div>
 
         </div>
+
+        <div class=" display fadeIn" id="casosPorBairro">
+            <nav>
+                <input type="search" name="buscarCasosPorBairro" id="buscarCasosPorBairro">
+                <a href="">
+                    <i class="fas fa-search"></i>
+                </a>
+            </nav>
+            <div class="quadroBranco">
+                <h2>Parque Piauí</h2>
+
+                <h3>Atendimentos</h3>
+                <div class="container-cinza">
+                    <div class="caixa-rosa">
+                        <span class="red">150.000 </span><span class="green">atendimentos</span>
+                    </div>
+                    <div class="caixa-verde">
+                        <span>250 suspeitos</span>
+                    </div>
+                </div>
+
+                <h3>CEPs com mais casos</h3>
+                <div class="container-cinza">
+                    <div class="caixa-rosa">
+                        <span class="red">06654-770</span>
+                    </div>
+                    <div class="caixa-verde">
+                        <span>2 casos</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="display fadeIn" id="casosPorCep">
+            <nav>
+                <input type="search" name="buscarCasosPorCep" id="buscarCasosPorCep">
+                <a href="">
+                    <i class="fas fa-search"></i>
+                </a>
+
+            </nav>
+            <div class="quadroBranco">
+                <h2>05574-100</h2>
+
+                <h3>Atendimentos</h3>
+                <div class="container-cinza">
+                    <div class="caixa-rosa">
+                        <span class="red">10 </span><span class="green">atendimentos</span>
+                    </div>
+                    <div class="caixa-verde">
+                        <span>250 suspeitos</span>
+                    </div>
+                </div>
+                <h3>Casos Nesse CEP</h3>
+                <div class="container-cinza-col">
+                    <div class="caixa-verde-col">
+                        <span>André Luis</span><br>
+                        <span>11983514937 - Rua vai quem quer - Nº 13</span>
+                    </div>
+                    <div class="caixa-verde-col">
+                        <span>André Luis</span><br>
+                        <span>11983514937 - Rua vai quem quer - Nº 13</span>
+                    </div>
+                </div>
+            </div>
+        </div>
     </main>
 
-    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+    <script src=" /js/adminScripts.js "></script>
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js " integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n " crossorigin="anonymous "></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js " integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo " crossorigin="anonymous "></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js " integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6 " crossorigin="anonymous "></script>
 </body>
 
 </html>

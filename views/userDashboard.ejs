@@ -38,33 +38,27 @@
                                 <span><%=consulta.data_hora.getDate()%>/<%=consulta.data_hora.getMonth()%>/<%=consulta.data_hora.getFullYear()%></span>
                             </li>
                         </a>
-                        <a href="/users/consulta/<%=consulta.id%> data-toggle=" modal"
-                            data-target="#atendimento<%=consulta.id%>">
-                            <li>Atendimento
-                                <span><%=consulta.data_hora.getDate()%>/<%=consulta.data_hora.getMonth()%>/<%=consulta.data_hora.getFullYear()%></span>
-                            </li>
-                        </a>
                         <%}%>
-                    </ol>
-                </section>
-                <section>
-                    <h2>Questionário</h2>
-                    <form class="form" action="">
-                        <div class="pergunta">
-                            <label for="pergunta1">Clique em iniciar para começar uma nova consulta</label>
+                </ol>
+            </section>
+            <section>
+                <h2>Questionário</h2>
+                <form class="form" action="">
+                    <div class="pergunta">
+                        <label for="pergunta1">Clique em iniciar para começar uma nova consulta</label>
+                        <div>
+                            <button class="btn btn-success button_sim">Iniciar</button>
+                        </div>
+                    </div>
+                    <% for(let sintoma of sintomas){ %>
+                        <div class="hidden pergunta">
+                            <label for="pergunta">Você tem <%=sintoma.descricao%>?</label>
                             <div>
-                                <button class="btn btn-success button_sim">Iniciar</button>
+                                <button class="btn btn-success button_sim" value="<%=sintoma.id%>">Sim</button>
+                                <button class="btn btn-danger button_nao">Não</button>
                             </div>
                         </div>
-                        <% for(let sintoma of sintomas){ %>
-                            <div class="hidden pergunta">
-                                <label for="pergunta">Você tem <%=sintoma.descricao%>?</label>
-                                <div>
-                                    <button class="btn btn-success button_sim" value="<%=sintoma.id%>">Sim</button>
-                                    <button class="btn btn-danger button_nao">Não</button>
-                                </div>
-                            </div>
-                            <%}%>
+                        <%}%>
                             <div class="hidden pergunta" id="resultado">
                                 <label for="pergunta">Ótimo, vamos processar seu resultado</label>
                                 <div class="icone">
@@ -74,14 +68,56 @@
                                     <button class="btn btn-success button_resultado" id="enviar-consulta">Enviar Questionário</button>
                                 </div>
                             </div>
-                        </form>
-                    </section>
-                </main>
-            </div>
-            <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
-            <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
-            <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
-            <script src="/js/formulario.js"></script>
-        </body>
-        
-        </html>
+                </form>
+            </section>
+            <section>
+                <a class="btn btn-outline-info btn-block mt-3" data-toggle="modal" data-target="#sintomas">
+                    <h2>Principais sintomas</h2>
+                </a>
+                <!-- Modal -->
+                <div class="modal fade" id="sintomas" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title vw-100" id="modalLabel">
+                                    <span>Lista de sintomas</span>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
+                              <span aria-hidden="true">&times;</span>
+                            </button>
+                                </h5>
+                            </div>
+                            <div class="modal-body">
+                                <div class="table-responsive">
+                                    <table class="table-striped table-hover">
+                                        <thead>
+                                            <tr>
+                                                <th>Sintomas</th>
+                                            </tr>
+                                        </thead>
+                                        <% for(let sintoma of sintomas){ %>
+                                            <tr>
+                                                <td>
+                                                    <%=sintoma.descricao %>
+                                                </td>
+                                            </tr>
+                                            <%}%>
+                                    </table>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+        </main>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+    <script src="/js/formulario.js"></script>
+</body>
+
+</html>
