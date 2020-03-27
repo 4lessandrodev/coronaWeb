@@ -1,7 +1,12 @@
 let dashboard = document.getElementById("dashboard")
 let buscaBairro = document.getElementById("casosPorBairro")
 let buscaCep = document.getElementById("casosPorCep")
+let sidebar = document.getElementById("sidebar")
+let bars = document.getElementById("bars")
 
+function showMenu() {
+    sidebar.classList.add("")
+}
 
 function showDashboard(params) {
     if (dashboard.style.display === "none") {

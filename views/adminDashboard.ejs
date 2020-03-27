@@ -15,8 +15,8 @@
 
 <body>
     <main>
+        <!-- <a onclick="showMenu()" id="bars" class=""> <i class="fas fa-bars"></i></a> -->
         <div class="sidebar" id="sidebar">
-            
             <div class="sideItem">
                 <a class="button active" onclick="showDashboard()">
                     <i class="fas fa-home"></i>
@@ -25,7 +25,7 @@
                     </span>
                 </a>
             </div>
-            
+
             <div class="sideItem">
                 <a class="button" onclick="buscarCasosPorBairro()">
                     <i class="fas fa-search"></i>
@@ -34,7 +34,7 @@
                     </span>
                 </a>
             </div>
-            
+
             <div class="sideItem">
                 <a class="button" onclick="buscarCasosPorCep()">
                     <i class="fas fa-search"></i>
@@ -59,8 +59,8 @@
                     </span>
                 </a>
             </div>
-            
-            
+
+
         </div>
         <div class="board fadeIn" id="dashboard">
             <div class="row">
@@ -93,17 +93,17 @@
                     </div>
                 </div>
                 <div class="boardItem">
-                    <div class="boardItem">
-                        <iframe
-                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d14626.56560322451!2d-46.801356024732!3d-23.58131933885484!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94ce55737552cc95%3A0xfc00e18d6c8dd6ec!2sJardim%20Boa%20Vista%20(Zona%20Oeste)%2C%20S%C3%A3o%20Paulo%20-%20State%20of%20S%C3%A3o%20Paulo%2C%2005576-100!5e0!3m2!1sen!2sbr!4v1585262717787!5m2!1sen!2sbr"
-                        width="500" height="450" frameborder="0" style="border:0;" allowfullscreen=""
-                        aria-hidden="false" tabindex="0"></iframe>
+
+                    <div class="map-frame">
+                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d14626.56560322451!2d-46.801356024732!3d-23.58131933885484!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94ce55737552cc95%3A0xfc00e18d6c8dd6ec!2sJardim%20Boa%20Vista%20(Zona%20Oeste)%2C%20S%C3%A3o%20Paulo%20-%20State%20of%20S%C3%A3o%20Paulo%2C%2005576-100!5e0!3m2!1sen!2sbr!4v1585262717787!5m2!1sen!2sbr"
+                            height="90%" width="90%" frameborder="0" style="align-self: center; border:0; border-radius: 10px; box-shadow: 0px 2px 5px  #aaaaaa;" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>
                     </div>
+
                 </div>
             </div>
-            
+
         </div>
-        
+
         <div class=" display fadeIn" id="casosPorBairro">
             <nav>
                 <input type="search" name="buscarCasosPorBairro" id="buscarCasosPorBairro">
@@ -113,7 +113,7 @@
             </nav>
             <div class="quadroBranco">
                 <h2>Parque Piauí</h2>
-                
+
                 <h3>Atendimentos</h3>
                 <div class="container-cinza">
                     <div class="caixa-rosa">
@@ -123,7 +123,7 @@
                         <span>250 suspeitos</span>
                     </div>
                 </div>
-                
+
                 <h3>CEPs com mais casos</h3>
                 <div class="container-cinza">
                     <div class="caixa-rosa">
@@ -135,18 +135,18 @@
                 </div>
             </div>
         </div>
-        
+
         <div class="display fadeIn" id="casosPorCep">
             <nav>
                 <input type="search" name="buscarCasosPorCep" id="buscarCasosPorCep">
                 <a href="">
                     <i class="fas fa-search"></i>
                 </a>
-                
+
             </nav>
             <div class="quadroBranco">
                 <h2>05574-100</h2>
-                
+
                 <h3>Atendimentos</h3>
                 <div class="container-cinza">
                     <div class="caixa-rosa">
@@ -170,7 +170,7 @@
             </div>
         </div>
     </main>
-    
+
     <script src=" /js/adminScripts.js "></script>
     <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js " integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n " crossorigin="anonymous "></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js " integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo " crossorigin="anonymous "></script>
